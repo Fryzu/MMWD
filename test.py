@@ -19,11 +19,11 @@ class TestStructures(unittest.TestCase):
     def test_solution_creation(self):
         solution = Solution(None)
         # print(solution)
-    def test_value_function(self):
+    def test_cost_function(self):
         city = City()
         solution = Solution(city)
         print(city.printTraffic())
-        print(solution.value)
+        print(solution.cost)
 
 
 if __name__== "__main__":

@@ -88,7 +88,7 @@ class Solution:
             })
 
     @property
-    def value(self):
+    def cost(self):
         #Value function cresultalculating
         result = 0
 
