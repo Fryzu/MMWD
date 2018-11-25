@@ -1,4 +1,5 @@
 from random import randint
+from math import inf
 
 MAX_DISTANCE = 50
 MAX_TRAFFIC = 50
@@ -6,11 +7,7 @@ LINES_NUMBER = 3
 LINE_LENGTH = 3
 MAP_SIZE = 3
 
-class AlgoInterface:
-    '''Interface for taboo search algorythm'''
-    pass
-
-class City(AlgoInterface):
+class City:
     '''City map represents data of the problem'''
 
     def __init__(self):
@@ -25,20 +22,38 @@ class City(AlgoInterface):
                         "traffic": randomTraffic
                     }
                     self._conncections[i][j] = newConncetion
+                else:
+                    newConncetion = {
+                        "distance": inf,
+                        "traffic": inf
+                    }
+                    self._conncections[i][j] = newConncetion
+
     def __str__(self):
-        result = '======CITY MAP======'
+        result = 'CITY MAP\n================='
         for i in self._conncections:
             result += '\n'
             result += str(i)
+        result += '\n'
         return result
 
     def printDistance(self):
-        result = '======CITY MAP DISTANCE======\n'
+        result = 'CITY MAP DISTANCE\n=================\n'
         for i in range(MAP_SIZE):
             for j in range(MAP_SIZE):
-                result += str(self._conncections[i][j].get("distance")) + "   "
+                connection = '{:>5}'.format(self._conncections[i][j]["distance"]) 
+                result += connection
             result += "\n"
-        print(result)
+        return result
+
+    def printTraffic(self):
+        result = 'CITY MAP TRAFFIC\n=================\n'
+        for i in range(MAP_SIZE):
+            for j in range(MAP_SIZE):
+                connection = '{:>5}'.format(self._conncections[i][j]["traffic"])
+                result += connection
+            result += "\n"
+        return result
 
 class Solution:
     ''' Solution representation '''
@@ -63,30 +78,13 @@ class Solution:
                 lineName : line
             })
 
+    @property
+    def value(self):
+        #Value function calculating
+
     def __str__(self):
         result = '======SOLUTION======'
         for i in self.lines:
             result += '\n'
             result += str(i)
         return result  
-
-'''
-    def __init__(self):
-        self._lines = []
-
-    def addLine(self, line = None):
-        if line == None:
-            line = Line()
-        self._lines.append(line)
-
-    def addConnection(self, lineNumber, connection):
-        for i in self._lines:
-            if i.number == lineNumber:
-                i.addConncection(connection)
-
-    def __str__(self):
-        result = '======SOLUTION======'
-        for i in self._lines:
-            result += '\n\t'
-            result += str(i)
-        return result '''
