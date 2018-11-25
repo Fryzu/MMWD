@@ -6,6 +6,7 @@ MAX_TRAFFIC = 50
 LINES_NUMBER = 3
 LINE_LENGTH = 3
 MAP_SIZE = 3
+PENALITY_CONST = 1
 
 class City:
     '''City map represents data of the problem'''
@@ -28,6 +29,12 @@ class City:
                         "traffic": inf
                     }
                     self._conncections[i][j] = newConncetion
+
+    def getTraffic(self, firstNode, secondNode):
+        return self._conncections[firstNode][secondNode]["traffic"]
+
+    def getDistance(self, firstNode, secondNode):
+        return self._conncections[firstNode][secondNode]["distance"]
 
     def __str__(self):
         result = 'CITY MAP\n================='
@@ -58,7 +65,9 @@ class City:
 class Solution:
     ''' Solution representation '''
 
-    def __init__(self):
+    def __init__(self, city):
+
+        self.city = city
         self.lines = []
 
         #generate list of lines
@@ -80,7 +89,14 @@ class Solution:
 
     @property
     def value(self):
-        #Value function calculating
+        #Value function cresultalculating
+        result = 0
+
+        for i in range(0, MAP_SIZE):
+            for j in range(0, MAP_SIZE):
+                if i != j:
+                    result += 1*self.city.getTraffic(i, j)
+        return result
 
     def __str__(self):
         result = '======SOLUTION======'
