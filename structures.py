@@ -6,7 +6,7 @@ MAX_TRAFFIC = 50
 LINES_NUMBER = 3
 LINE_LENGTH = 3
 MAP_SIZE = 3
-PENALTY = 10000
+PENALTY = 0
 
 class City:
     '''City map represents data of the problem'''
@@ -99,28 +99,19 @@ class Solution:
         return result
 
     def check(self, x, y):
-        busStopList = []
-        min = 0
+        minimum = 0
         globalmin = 0
-        for i in range(0, LINES_NUMBER):##potem mozna robic do aktualniej liczby linii metoda do solution
-            line = self.getLine(i)
-            for j in range(0, len(line)):##przechodznie po lini w poszukiwaniu przystanku x
-                if x == line[j]:## jesli znaleziono przystanek x
-                    for m in range(0, len(line)):##szukanie przystanku Y w linii
-                        if y == line[m]:
-                            if x >y:
-                                for n in range(x,y-1):
-                                    min = min + self.getDistance(n, n+1)## wyznaczanie długosci trasy z x do y
-                            else:
-                                for n in range(y,x-1):
-                                    min = min + self.getDistance(n, n+1)## to samo tylko dla przypadku y>x
-                            if globalmin == 0 or globalmin > min:
-                                globalmin = min##globalnie najmniejsza trasa
-                            min = 0
-                        else:
-                            continue
-                else:
-                    continue
+        for line in self.lines: ##potem mozna robic do aktualniej liczby linii metoda do solution
+            for i in range(0, len(line)):##przechodznie po lini w poszukiwaniu przystanku x
+                if line[i] == x:## jesli znaleziono przystanek x
+                    for m in range(i+1, len(line)):##szukanie przystanku Y w linii
+                        if line[m] == y:
+                            for n in range(i, m-1):
+                                minimum = minimum + self.city.getDistance(n, n+1)## to samo tylko dla przypadku y>x
+                            if globalmin == 0 or globalmin > minimum:
+                                globalmin = minimum##globalnie najmniejsza trasa
+                            minimum = 0
+
         if globalmin == 0:##jesli nigdzie nie znaleziono polączenia czyli globalmin  = 0 to wyslij kare
             return PENALTY
         else:
