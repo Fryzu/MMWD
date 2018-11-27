@@ -5,9 +5,8 @@ MAX_DISTANCE = 50
 MAX_TRAFFIC = 50
 LINES_NUMBER = 3
 LINE_LENGTH = 3
-MAP_SIZE = 10
-PENALITY_CONST = 1
-FINE = 10000
+MAP_SIZE = 3
+PENALTY = 10000
 
 class City:
     '''City map represents data of the problem'''
@@ -73,7 +72,6 @@ class Solution:
 
         #generate list of lines
         for i in range(0, LINES_NUMBER):
-            lineName = "Line "+str(i)
 
             #generate random line
             line = []
@@ -84,40 +82,38 @@ class Solution:
                 nextStop = (line[i-1] + 1)%LINE_LENGTH
                 line.append(nextStop)
 
-            self.lines.append({
-                lineName : line
-            })
+            self.lines.append(line)
 
-    def getLine(self,i):
+    def getLine(self, i):
         return self.lines[i]
 
     @property
     def cost(self):##przekazanie referencji Solution?
-        #Value function cresultalculating
+        #Value function calculating
         result = 0
 
         for i in range(0, MAP_SIZE):
             for j in range(0, MAP_SIZE):
                 if i != j:
-                    result += check(costam,i,j)*self.city.getTraffic(i, j)
+                    result += self.check(i, j)*self.city.getTraffic(i, j)
         return result
 
-    def check(self,x,y):
-        busStopList =[]
+    def check(self, x, y):
+        busStopList = []
         min = 0
-        globalmin =0
-        for i in range(0,LINES_NUMBER):##potem mozna robic do aktualniej liczby linii metoda do solution
-            line = getLine(self,i)
-            for j in range(0,line.len()):##przechodznie po lini w poszukiwaniu przystanku x
+        globalmin = 0
+        for i in range(0, LINES_NUMBER):##potem mozna robic do aktualniej liczby linii metoda do solution
+            line = self.getLine(i)
+            for j in range(0, len(line)):##przechodznie po lini w poszukiwaniu przystanku x
                 if x == line[j]:## jesli znaleziono przystanek x
-                    for m in range(0,line.len()):##szukanie przystanku Y w linii
+                    for m in range(0, len(line)):##szukanie przystanku Y w linii
                         if y == line[m]:
                             if x >y:
                                 for n in range(x,y-1):
-                                    min = min + self.getDistance(n,n+1)## wyznaczanie długosci trasy z x do y
+                                    min = min + self.getDistance(n, n+1)## wyznaczanie długosci trasy z x do y
                             else:
                                 for n in range(y,x-1):
-                                    min = min + self.getDistance(n,n+1)## to samo tylko dla przypadku y>x
+                                    min = min + self.getDistance(n, n+1)## to samo tylko dla przypadku y>x
                             if globalmin == 0 or globalmin >min:
                                 globalmin = min##globalnie najmniejsza trasa
                             min = 0
@@ -126,7 +122,7 @@ class Solution:
                 else:
                     continue
         if globalmin == 0:##jesli nigdzie nie znaleziono polączenia czyli globalmin  = 0 to wyslij kare
-            return FINE
+            return PENALTY
         else:
             return globalmin
 

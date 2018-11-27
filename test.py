@@ -4,8 +4,8 @@ from structures import *
 class TestStructures(unittest.TestCase):
     def test_city_creation(self):
         city = City()
-        # print(city.printDistance())
-        # print(city.printTraffic())
+        #print(city.printDistance())
+        #print(city.printTraffic())
     def test_get_distance(self):
         city = City()
         for i in range(0, MAP_SIZE):
@@ -22,8 +22,11 @@ class TestStructures(unittest.TestCase):
     def test_cost_function(self):
         city = City()
         solution = Solution(city)
+        print(city.printDistance())
         print(city.printTraffic())
-        print(solution.cost)
+        print("calculated cost function:", solution.cost)
+        solution.lines[0].append(1)
+        print("calculated cost function with line [0, 2]:", solution.cost)
 
 
 if __name__== "__main__":
