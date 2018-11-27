@@ -24,10 +24,8 @@ class TestStructures(unittest.TestCase):
         solution = Solution(city)
         print(city.printDistance())
         print(city.printTraffic())
+        print(solution)
         print("calculated cost function:", solution.cost)
-        solution.lines[0].append(1)
-        print("calculated cost function with line [0, 2]:", solution.cost)
-
 
 if __name__== "__main__":
     unittest.main()

@@ -114,7 +114,7 @@ class Solution:
                             else:
                                 for n in range(y,x-1):
                                     min = min + self.getDistance(n, n+1)## to samo tylko dla przypadku y>x
-                            if globalmin == 0 or globalmin >min:
+                            if globalmin == 0 or globalmin > min:
                                 globalmin = min##globalnie najmniejsza trasa
                             min = 0
                         else:
@@ -130,5 +130,5 @@ class Solution:
         result = '======SOLUTION======'
         for i in self.lines:
             result += '\n'
-            result += str(i)
+            result += "Line" + str(i)
         return result  
