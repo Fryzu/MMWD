@@ -29,6 +29,10 @@ class City:
                         "traffic": inf
                     }
                     self._conncections[i][j] = newConncetion
+        for i in range(MAP_SIZE):
+            for j in range(MAP_SIZE):
+                if i >j:
+                    self._conncections[i][j]["distance"] = self._conncections[j][i]["distance"]
 
     def getTraffic(self, firstNode, secondNode):
         return self._conncections[firstNode][secondNode]["traffic"]
@@ -84,35 +88,40 @@ class Solution:
 
             self.lines.append(line)
 
-    def getLine(self, i):
-        return self.lines[i]
-
     @property
     def cost(self):##przekazanie referencji Solution?
         #Value function calculating
         result = 0
-
+        #result = self.city.getTraffic(1, 2)
         for i in range(0, MAP_SIZE):
             for j in range(0, MAP_SIZE):
                 if i != j:
-                    result += self.check(i, j)*self.city.getTraffic(i, j)
+                    result += self.check(i,j)*self.city.getTraffic(i, j)
         return result
 
     def check(self, x, y):
         minimum = 0
-        globalmin = 0
+        globalmin = inf
+        abd = 0
         for line in self.lines: ##potem mozna robic do aktualniej liczby linii metoda do solution
             for i in range(0, len(line)):##przechodznie po lini w poszukiwaniu przystanku x
                 if line[i] == x:## jesli znaleziono przystanek x
-                    for m in range(i+1, len(line)):##szukanie przystanku Y w linii
+                    for m in range(0, len(line)):##szukanie przystanku Y w linii
                         if line[m] == y:
-                            for n in range(i, m-1):
-                                minimum = minimum + self.city.getDistance(n, n+1)## to samo tylko dla przypadku y>x
-                            if globalmin == 0 or globalmin > minimum:
-                                globalmin = minimum##globalnie najmniejsza trasa
                             minimum = 0
-
-        if globalmin == 0:##jesli nigdzie nie znaleziono polączenia czyli globalmin  = 0 to wyslij kare
+                            if m > i:
+                                for n in range(i, m,1):
+                                    minimum += self.city.getDistance(line[n], line[n+1])## to samo tylko dla przypadku y>x
+                            if m < i:
+                                for n in range(i, m,-1):
+                                    minimum += self.city.getDistance(line[n], line[n-1])## to samo tylko dla przy
+                            if globalmin > minimum:
+                                globalmin = minimum##globalnie najmniejsza trasa
+                        else:
+                            continue
+                else:
+                    continue
+        if globalmin == inf:##jesli nigdzie nie znaleziono polączenia czyli globalmin  = 0 to wyslij kare
             return PENALTY
         else:
             return globalmin

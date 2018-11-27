@@ -22,8 +22,8 @@ class TestStructures(unittest.TestCase):
     def test_cost_function(self):
         city = City()
         solution = Solution(city)
-        print(city.printDistance())
         print(city.printTraffic())
+        print(city.printDistance())
         print(solution)
         print("calculated cost function:", solution.cost)
 
