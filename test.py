@@ -22,6 +22,7 @@ class TestStructures(unittest.TestCase):
     def test_cost_function(self):
         city = City()
         solution = Solution(city)
+        solution.input()
         print(city.printTraffic())
         print(city.printDistance())
         print(solution)

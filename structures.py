@@ -5,7 +5,7 @@ MAX_DISTANCE = 50
 MAX_TRAFFIC = 50
 LINES_NUMBER = 3
 LINE_LENGTH = 3
-MAP_SIZE = 3
+MAP_SIZE = 4
 PENALTY = 0
 
 class City:
@@ -98,6 +98,11 @@ class Solution:
                 if i != j:
                     result += self.check(i,j)*self.city.getTraffic(i, j)
         return result
+
+    def input(self):
+        for i in range(0, LINES_NUMBER):
+            for j in range(0, LINE_LENGTH):
+                self.lines[i][j] = int(input("linia "+str(i)+" przystanek "+str(j)+"\n"))
 
     def check(self, x, y):
         minimum = 0
