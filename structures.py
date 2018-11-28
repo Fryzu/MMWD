@@ -1,5 +1,6 @@
 from random import randint
 from math import inf
+from abc import ABC, abstractmethod
 
 MAX_DISTANCE = 50
 MAX_TRAFFIC = 50
@@ -8,7 +9,39 @@ LINE_LENGTH = 3
 MAP_SIZE = 3
 PENALTY = 0
 
-class City:
+class Simulation:
+    def simulate(self, iterationsCount, startPoint = None):
+        '''Simulate iterationsCount iterations with starting point. 
+        When no starting point generates random.'''
+        pass
+
+    def save():
+        '''Ability to stop the simulation and save the status of solution and map'''
+        pass
+
+class ICity(ABC):
+    '''City class interface for taboAlgo'''
+
+    @abstractmethod
+    def getDistance(self, firstNode: int, secondNode: int) -> int:
+        pass
+
+    @abstractmethod
+    def getTraffic(self, firstNode: int, secondNode: int) -> int:
+        pass
+
+class ISolution(ABC):
+    '''Solution class interface for taboAlgo'''
+
+    @abstractmethod
+    def neighbourhood(self) -> list:
+        pass
+
+    @abstractmethod
+    def neighbourhood(self, lines: list):
+        pass
+
+class City(ICity):
     '''City map represents data of the problem'''
 
     def __init__(self):
@@ -66,7 +99,7 @@ class City:
             result += "\n"
         return result
 
-class Solution:
+class Solution(ISolution):
     ''' Solution representation '''
 
     def __init__(self, city):
@@ -125,6 +158,13 @@ class Solution:
             return PENALTY
         else:
             return globalmin
+
+    def neighbourhood(self):
+        pass
+
+    def neighbourhood(self, lines):
+        pass
+
 
     def __str__(self):
         result = '======SOLUTION======'

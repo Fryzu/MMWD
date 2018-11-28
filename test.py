@@ -19,13 +19,6 @@ class TestStructures(unittest.TestCase):
     def test_solution_creation(self):
         solution = Solution(None)
         # print(solution)
-    def test_cost_function(self):
-        city = City()
-        solution = Solution(city)
-        print(city.printTraffic())
-        print(city.printDistance())
-        print(solution)
-        print("calculated cost function:", solution.cost)
-
+        
 if __name__== "__main__":
     unittest.main()
