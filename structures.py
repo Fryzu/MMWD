@@ -1,6 +1,7 @@
 from random import randint
 from math import inf
 from abc import ABC, abstractmethod
+import json
 
 MAX_DISTANCE = 50
 MAX_TRAFFIC = 50
@@ -165,6 +166,8 @@ class Solution(ISolution):
     def neighbourhood(self, lines):
         pass
 
+    def exportToJson(self):
+        return json.dumps(self.lines)
 
     def __str__(self):
         result = '======SOLUTION======'
