@@ -3,34 +3,6 @@ from math import inf
 from abc import ABC, abstractmethod
 import json
 
-MAX_DISTANCE = 50
-MAX_TRAFFIC = 50
-LINES_NUMBER = 3
-LINE_LENGTH = 3
-MAP_SIZE = 3
-PENALTY = 0
-
-class Simulation:
-    def simulate(self, iterationsCount, startPoint = None):
-        '''Simulate iterationsCount iterations with starting point. 
-        When no starting point generates random.'''
-        pass
-
-    def save():
-        '''Ability to stop the simulation and save the status of solution and map'''
-        pass
-
-class ICity(ABC):
-    '''City class interface for taboAlgo'''
-
-    @abstractmethod
-    def getDistance(self, firstNode: int, secondNode: int) -> int:
-        pass
-
-    @abstractmethod
-    def getTraffic(self, firstNode: int, secondNode: int) -> int:
-        pass
-
 class ISolution(ABC):
     '''Solution class interface for taboAlgo'''
 
@@ -41,32 +13,6 @@ class ISolution(ABC):
     @abstractmethod
     def neighbourhood(self, lines: list):
         pass
-
-class City(ICity):
-    '''City map represents data of the problem'''
-
-    def __init__(self):
-        self._conncections = [[0 for x in range(MAP_SIZE)] for y in range(MAP_SIZE)] 
-        for i in range(MAP_SIZE):
-            for j in range(MAP_SIZE):
-                if i != j:
-                    randomDistance= randint(1, MAX_DISTANCE)
-                    randomTraffic= randint(1, MAX_TRAFFIC)
-                    newConncetion = {
-                        "distance": randomDistance,
-                        "traffic": randomTraffic
-                    }
-                    self._conncections[i][j] = newConncetion
-                else:
-                    newConncetion = {
-                        "distance": inf,
-                        "traffic": inf
-                    }
-                    self._conncections[i][j] = newConncetion
-        for i in range(MAP_SIZE):
-            for j in range(MAP_SIZE):
-                if i >j:
-                    self._conncections[i][j]["distance"] = self._conncections[j][i]["distance"]
 
     def getTraffic(self, firstNode, secondNode):
         return self._conncections[firstNode][secondNode]["traffic"]
