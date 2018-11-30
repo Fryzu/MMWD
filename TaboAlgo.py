@@ -1,10 +1,11 @@
 import settings
 from math import inf
+from City import City
+from Solution import Solution
 
 class TaboAlgo:
     def __init__(self, city = None, solution = None, taboList = None):
         self.city = city
-
         #TaboAlgo can import city, taboList and solution from json
         if city:
             self.city = city
@@ -18,9 +19,64 @@ class TaboAlgo:
             self.solution = solution
         else:
             self.solution = Solution()
+        self.bestValue = self.cost()
+        self.bestNieghbourValue = inf
 
     def iterate(self):
+        n = 0
+        while n< settings.ITERATION:
+            n += 1
+            ##add solution to tabulist
+            self.solution = self.nieghbourhood()
+            Cost = self.cost()
+            if Cost < self.bestValue:
+                self.bestValue = Cost
+        return self.solution
+
+    def nieghbourhood(self):
+        lines = self.solution.lines
+        self.bestNieghbourValue = inf
+        value = changeOneBusStop()
+        if value < self.bestNieghbourValue
+            self.bestNieghbourValue = value
         pass
+
+    def changeOneBusStop(self):## sąsiedztwo1: wymiana jednego przystanku z linii na inny jesli jest to możliwe
+        globalValue = inf
+        bestsolution = 0
+        backup = self.solution.lines
+        lines = self.solution.lines
+        for line in range(0,len(lines)):
+            for busStop in range(0, len(line)):
+                if busStop == 0:
+                    for x in range(0, settings.MAP_SIZE):
+                        if self.city.getDistance(x,lines[line][busStop+1]) != inf:
+                            lines[line][busStop] = x
+                            self.solution.lines = lines
+                            Cost = self.cost()
+                            if Cost < globalValue:
+                                globalValue = Cost
+                                bestsolution = lines
+                if busStop == len(line) - 1:
+                    for x in range(0, settings.MAP_SIZE):
+                        if self.city.getDistance(line[busStop-1],x) != inf:
+                            lines[line][busStop] = x
+                            self.solution.lines = lines
+                            Cost = self.cost()
+                            if Cost < globalValue:
+                                globalValue = Cost
+                                bestsolution = lines
+                else:
+                    for x in range(0, settings.MAP_SIZE):
+                        if self.city.getDistance(line[busStop-1],x) != inf:
+                            if self.city.getDistance(x,line[busStop+1]) != inf:
+                                lines[line][busStop] = x
+                                self.solution.lines = lines
+                                Cost = self.cost()
+                                if Cost < globalValue:
+                                    globalValue = Cost
+                                    bestsolution = lines
+        return bestsolution
 
     @property
     def cost(self):
@@ -45,10 +101,18 @@ class TaboAlgo:
                             minimum = 0
                             if m > i:
                                 for n in range(i, m,1):
-                                    minimum += self.city.getDistance(line[n], line[n+1])## to samo tylko dla przypadku y>x
+                                    next = self.city.getDistance(line[n], line[n+1])
+                                    if next == inf:## zabezpieczenie przed inf czyli braku połączenia między przystankami
+                                        minimum = inf
+                                        break
+                                    minimum += next## to samo tylko dla przypadku y>x
                             if m < i:
                                 for n in range(i, m,-1):
-                                    minimum += self.city.getDistance(line[n], line[n-1])## to samo tylko dla przy
+                                    next = self.city.getDistance(line[n], line[n-1])
+                                    if next == inf:
+                                        minimum = inf
+                                        break
+                                    minimum += next## to samo tylko dla przy
                             if globalmin > minimum:
                                 globalmin = minimum##globalnie najmniejsza trasa
                         else:
@@ -59,3 +123,4 @@ class TaboAlgo:
             return settings.PENALTY
         else:
             return globalmin
+
