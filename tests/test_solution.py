@@ -8,7 +8,7 @@ class TestSolution(unittest.TestCase):
         self.solution = Solution()
 
         #imports test_file.json and loads it to the solution
-        with open('tests/test_solution.json', 'r') as r_file:
+        with open('C:/Users/Sylwester/PycharmProjects/MMWDd/tests/test_solution.json', 'r') as r_file:
             self.solution.importFromJson(r_file)
 
         print("\nSoluion test case:\n======================")

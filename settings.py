@@ -1,6 +1,7 @@
 # sim settings
 
 #test settings
+ITERATION = 1000
 MAX_DISTANCE = 10
 MAX_TRAFFIC = 10
 LINES_NUMBER = 3
