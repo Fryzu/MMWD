@@ -19,7 +19,7 @@ class TestTaboAlgo(unittest.TestCase):
         self.taboAlgo = TaboAlgo(city, solution)
 
     def test_cost_function(self):
-        self.assertEqual(self.taboAlgo.cost, 198)
+        self.assertEqual(self.taboAlgo.cost, 173)
 
     def iterate(self):
         pass
