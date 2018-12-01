@@ -17,17 +17,18 @@ class ISolution(ABC):
         pass
 
 class Solution(ISolution):
+    cost = inf
     ''' Solution representation '''
 
     def __init__(self):
 
         self.lines = []
-
         #generate list of lines
         for i in range(0, settings.LINES_NUMBER):
 
             #generate random line
             line = []
+
             startStop = randint(0, settings.MAP_SIZE-1)
             line.append(startStop)
 
@@ -37,11 +38,27 @@ class Solution(ISolution):
 
             self.lines.append(line)
 
-    def neighbourhood(self):
-        pass
-
     def updateLines(self, lines):
         self.lines = lines
+
+    def updateBusStop(self,i,j,value):
+        self.lines[i][j] = value
+
+    def getLines(self):
+        return self.lines
+
+    def getCost(self):
+        return self.cost
+
+    def setCost(self,cost):
+        self.cost = cost
+
+    def setAll(self,solution):
+        self.lines = solution.getLines()
+        self.cost = solution.getCost()
+
+    def neighbourhood(self):
+        pass
 
     def importFromJson(self, jsonString):
         self.lines = json.load(jsonString)
@@ -54,4 +71,5 @@ class Solution(ISolution):
         for i in self.lines:
             result += '\n'
             result += "Line" + str(i)
-        return result  
+        result += '\n'+"Cost: " + str(self.cost)
+        return result
