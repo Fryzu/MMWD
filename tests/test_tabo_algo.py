@@ -2,6 +2,7 @@ import unittest
 from Solution import Solution
 from City import City
 from TaboAlgo import TaboAlgo
+import settings
 
 class TestTaboAlgo(unittest.TestCase):
     
@@ -21,10 +22,9 @@ class TestTaboAlgo(unittest.TestCase):
         print("City test case:\n======================")
         print(city.printDistance())
         print(city.printTraffic())
-
+        settings.TABUTIME = 2
         self.taboAlgo = TaboAlgo(city, solution)
-        value = self.taboAlgo.iterate()
-        print(value)
+        print(self.taboAlgo.iterate())
     def test_cost_function(self):
         pass## self.assertEqual(self.taboAlgo.cost, 173)
 

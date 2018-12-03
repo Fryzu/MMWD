@@ -45,7 +45,7 @@ class Solution(ISolution):
         self.lines[i][j] = value
 
     def getLines(self):
-        return self.lines
+        return self.lines.copy()
 
     def getCost(self):
         return self.cost
@@ -56,6 +56,12 @@ class Solution(ISolution):
     def setAll(self,solution):
         self.lines = solution.getLines()
         self.cost = solution.getCost()
+
+    def isequal(self,solution):
+        if self.lines == solution.lines:
+            return True
+        else:
+            return False
 
     def neighbourhood(self):
         pass
