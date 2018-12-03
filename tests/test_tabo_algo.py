@@ -26,7 +26,13 @@ class TestTaboAlgo(unittest.TestCase):
         self.assertEqual(self.taboAlgo.cost(), 173)
 
     def test_iterate(self):
-        pass
+        print("\nBefore iteration:")
+        print("cost: ", self.taboAlgo.cost())
+        print(self.taboAlgo.bestLines)
+        self.taboAlgo.iterate()
+        print("After iteration:")
+        print("cost: ", self.taboAlgo.cost())
+        print(self.taboAlgo.bestLines)
 
 if __name__== "__main__":
     unittest.main()

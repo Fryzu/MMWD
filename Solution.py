@@ -17,26 +17,27 @@ class ISolution(ABC):
         pass
 
 class Solution(ISolution):
-    cost = inf
     ''' Solution representation '''
 
-    def __init__(self):
+    def __init__(self, lines = None):
+        if lines:
+            self.lines = lines
+        else:
+            self.lines = []
+            #generate list of lines
+            for i in range(0, settings.LINES_NUMBER):
 
-        self.lines = []
-        #generate list of lines
-        for i in range(0, settings.LINES_NUMBER):
+                #generate random line
+                line = []
 
-            #generate random line
-            line = []
+                startStop = randint(0, settings.MAP_SIZE-1)
+                line.append(startStop)
 
-            startStop = randint(0, settings.MAP_SIZE-1)
-            line.append(startStop)
+                for i in range(1, settings.LINE_LENGTH):
+                    nextStop = (line[i-1] + 1)%settings.LINE_LENGTH
+                    line.append(nextStop)
 
-            for i in range(1, settings.LINE_LENGTH):
-                nextStop = (line[i-1] + 1)%settings.LINE_LENGTH
-                line.append(nextStop)
-
-            self.lines.append(line)
+                self.lines.append(line)
 
     def importFromJson(self, jsonString):
         self.lines = json.load(jsonString)
@@ -49,7 +50,6 @@ class Solution(ISolution):
         for i in self.lines:
             result += '\n'
             result += "Line" + str(i)
-        result += '\n'+"Cost: " + str(self.cost)
         return result
 
     def updateLines(self, lines):
@@ -79,11 +79,11 @@ class Solution(ISolution):
 
     def neighbourhood(self):
         neigbourhood = []
-
         neigbourhood += self.changeOneBusStop()
 
         return neigbourhood
 
+    # types of neighbourhoods
     def changeOneBusStop(self):## sąsiedztwo1: wymiana jednego przystanku z linii na inny jesli jest to możliwe
         newNeighnourhood = []
 

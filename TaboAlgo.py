@@ -23,9 +23,17 @@ class TaboAlgo:
             self.solution = Solution()
 
         self.neighbour = Solution()##to ma byc nowa zmienna
+        self.bestLines = copy.deepcopy(self.solution.getLines())
+        self.bestLinesCost = self.cost()
 
     def iterate(self):
-        nieghbours = self.solution.neighbourhood()
+        neighbours = self.solution.neighbourhood() 
+        for x in range(0, len(neighbours)):
+            self.solution.updateLines(neighbours[x])
+            actualCost = self.cost()
+            if actualCost < self.bestLinesCost:
+                self.bestLinesCost = actualCost
+                self.bestLines = copy.deepcopy(self.solution.getLines())
 
         """ self.solution.setCost(self.cost())
         best = copy.deepcopy(self.neighbour)
@@ -49,7 +57,7 @@ class TaboAlgo:
             bestNieghbour.setAll(value)
         return bestNieghbour
         pass """
-
+    
     def cost(self):
         #Value function calculating
         result = 0
@@ -57,10 +65,10 @@ class TaboAlgo:
         for i in range(0, settings.MAP_SIZE):
             for j in range(0, settings.MAP_SIZE):
                 if i != j:
-                    result += self.check(i,j)*self.city.getTraffic(i, j)
+                    result += self.costFunctionCheck(i,j)*self.city.getTraffic(i, j)
         return result
 
-    def check(self, x, y):
+    def costFunctionCheck(self, x, y):
         minimum = 0
         globalmin = inf
         abd = 0
@@ -94,16 +102,6 @@ class TaboAlgo:
             return settings.PENALTY
         else:
             return globalmin
-
-    def costNeighbour(self):
-        #Value function calculating
-        result = 0
-        #result = self.city.getTraffic(1, 2)
-        for i in range(0, settings.MAP_SIZE):
-            for j in range(0, settings.MAP_SIZE):
-                if i != j:
-                    result += self.checkNeighbour(i,j)*self.city.getTraffic(i, j)
-        return result
 
     def checkNeighbour(self, x, y):
         minimum = 0
