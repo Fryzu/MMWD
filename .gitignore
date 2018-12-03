@@ -1,3 +1,7 @@
 .vscode/
 __pycache__/
 .idea/
+*.xml
+codestyles/
+__pycache__/
+_windows/
