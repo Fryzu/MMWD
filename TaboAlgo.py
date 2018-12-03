@@ -36,6 +36,8 @@ class TaboAlgo:
                 best.setAll(self.solution)
             self.taboList.add(self.solution)
             self.taboList.update()
+            print(str(n)+'\n')
+            self.taboList.print()
         return best
 
     def nieghbourhood(self):

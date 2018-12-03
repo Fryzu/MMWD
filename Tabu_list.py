@@ -9,7 +9,9 @@ class TabuList:
 
 
     def add(self, solution):
-        self.list.append([solution,settings.TABUTIME])
+        TMP= Solution()
+        TMP.setAll(solution)
+        self.list.append([TMP,settings.TABUTIME])
 
     def update(self):
         for i in range(0,len(self.list)):
@@ -24,3 +26,11 @@ class TabuList:
             if solution.isequal(self.list[i][0]):
                 return True
         return False
+
+    def print(self):
+        result = 'TABU\n======================'
+        print(result)
+        if list:
+            for i in self.list:
+                print('\n'+str(i[0])+'\n'+"TabuTIME: " + str(i[1]))
+        return result
