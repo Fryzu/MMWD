@@ -3,6 +3,7 @@ from math import inf
 from City import City
 from Solution import Solution
 from Tabu_list import TabuList
+import copy
 
 class TaboAlgo:
     def __init__(self, city = None, solution = None, taboList = None, bestValue = None, bestNeighbourValue = None, neighbour = None):
@@ -20,67 +21,34 @@ class TaboAlgo:
             self.solution = solution
         else:
             self.solution = Solution()
+
         self.neighbour = Solution()##to ma byc nowa zmienna
 
     def iterate(self):
-        n = 0
-        self.solution.setCost(self.cost())
-        best=Solution()
-        best.setAll(self.solution)
+        nieghbours = self.solution.neighbourhood()
+
+        """ self.solution.setCost(self.cost())
+        best = copy.deepcopy(self.neighbour)
         print(best)
-        while n< settings.ITERATION:
+        while n < iterationCount:
             n += 1
             ##add solution to tabulist
-            self.solution.setAll(self.nieghbourhood())
+            self.solution = copy.deepcopy(self.nieghbourhood())
             if self.solution.getCost() < best.getCost():
                 best.setAll(self.solution)
             self.taboList.add(self.solution)
             self.taboList.update()
             print(str(n)+'\n')
             self.taboList.print()
-        return best
+        return best """
 
-    def nieghbourhood(self):
+    """ def nieghbourhood(self):
         bestNieghbour = Solution()
         value = self.changeOneBusStop()
         if value.getCost() < bestNieghbour.getCost():
             bestNieghbour.setAll(value)
         return bestNieghbour
-        pass
-
-    def changeOneBusStop(self):## sąsiedztwo1: wymiana jednego przystanku z linii na inny jesli jest to możliwe
-        bestsolution = Solution()
-        for line in range(0,len(self.solution.lines)):
-            for busStop in range(0, len(self.solution.lines[line])):
-                if busStop == 0:
-                    for x in range(0, settings.MAP_SIZE):
-                        if self.city.getDistance(x,self.solution.lines[line][busStop+1]) != inf:
-                            self.neighbour.updateLines(self.solution.getLines())##iezalezny obiekt
-                            self.neighbour.updateBusStop(line,busStop,x)
-                            if not self.taboList.check(self.neighbour):
-                                self.neighbour.setCost(self.costNeighbour())
-                                if self.neighbour.getCost() < bestsolution.getCost():
-                                    bestsolution.setAll(self.neighbour)
-                if busStop == len(self.solution.lines[line]) - 1:
-                    for x in range(0, settings.MAP_SIZE):
-                        if self.city.getDistance(self.solution.lines[line][busStop-1],x) != inf:
-                            self.neighbour.updateLines(self.solution.getLines())##iezalezny obiekt
-                            self.neighbour.updateBusStop(line,busStop,x)
-                            if not self.taboList.check(self.neighbour):
-                                self.neighbour.setCost(self.costNeighbour())
-                                if self.neighbour.getCost() < bestsolution.getCost():
-                                    bestsolution.setAll(self.neighbour)
-                else:
-                    for x in range(0, settings.MAP_SIZE):
-                        if self.city.getDistance(self.solution.lines[line][busStop-1],x) != inf:
-                            if self.city.getDistance(x,self.solution.lines[line][busStop+1]) != inf:
-                                self.neighbour.updateLines(self.solution.getLines())##iezalezny obiekt
-                                self.neighbour.updateBusStop(line,busStop,x)
-                                if not self.taboList.check(self.neighbour):
-                                    self.neighbour.setCost(self.costNeighbour())
-                                    if self.neighbour.getCost() < bestsolution.getCost():
-                                        bestsolution.setAll(self.neighbour)
-        return bestsolution
+        pass """
 
     def cost(self):
         #Value function calculating

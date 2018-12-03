@@ -11,10 +11,6 @@
         {
             "distance": 10,
             "traffic": 5
-        },
-        {
-            "distance": 15,
-            "traffic": 8
         }
     ],
     [
@@ -29,10 +25,6 @@
         {
             "distance": 2,
             "traffic": 3
-        },
-        {
-            "distance": 12,
-            "traffic": 9
         }
     ],
     [
@@ -45,28 +37,6 @@
             "traffic": 1
         },
         {
-            "distance": Infinity,
-            "traffic": Infinity
-        },
-        {
-            "distance": 9,
-            "traffic": 13
-        }
-    ],
-    [
-        {
-            "distance": 10,
-            "traffic": 10
-        },
-        {
-            "distance": 5,
-            "traffic": 1
-        },
-        {
-            "distance": 14,
-            "traffic": 17
-        },
-	    {
             "distance": Infinity,
             "traffic": Infinity
         }

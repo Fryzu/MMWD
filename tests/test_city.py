@@ -1,6 +1,9 @@
 import unittest
 from City import City
 
+import os #files and directories
+project_dir = os.path.dirname(os.path.abspath(__file__))
+
 class TestCity(unittest.TestCase):
 
     @classmethod
@@ -8,7 +11,7 @@ class TestCity(unittest.TestCase):
         self.city = City()
 
         #imports test_file.json and loads it to the city
-        with open('C:/Users/Sylwester/PycharmProjects/MMWDd/tests/test_city.json', 'r') as r_file:
+        with open(os.path.join(project_dir, "test_city.json"), 'r') as r_file:
             self.city.importFromJson(r_file)
 
         print("City test case:\n======================")

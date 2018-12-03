@@ -4,6 +4,9 @@ from City import City
 from TaboAlgo import TaboAlgo
 import settings
 
+import os #files and directories
+project_dir = os.path.dirname(os.path.abspath(__file__))
+
 class TestTaboAlgo(unittest.TestCase):
     
     @classmethod
@@ -12,23 +15,17 @@ class TestTaboAlgo(unittest.TestCase):
 
         #initializing a test taboalgo
         city = City()
-        with open('C:/Users/Sylwester/PycharmProjects/MMWDd/tests/test_city.json', 'r') as r_file:
+        with open(os.path.join(project_dir, "test_city.json"), 'r') as r_file:
             city.importFromJson(r_file)
         solution = Solution()
-        with open('C:/Users/Sylwester/PycharmProjects/MMWDd/tests/test_solution.json', 'r') as r_file:
+        with open(os.path.join(project_dir, "test_solution.json"), 'r') as r_file:
             solution.importFromJson(r_file)
-        print("\nSoluion test case:\n======================")
-        print(solution)
-        print("City test case:\n======================")
-        print(city.printDistance())
-        print(city.printTraffic())
-        settings.TABUTIME = 2
         self.taboAlgo = TaboAlgo(city, solution)
-        print(self.taboAlgo.iterate())
-    def test_cost_function(self):
-        pass## self.assertEqual(self.taboAlgo.cost, 173)
 
-    def iterate(self):
+    def test_cost_function(self):
+        self.assertEqual(self.taboAlgo.cost(), 173)
+
+    def test_iterate(self):
         pass
 
 if __name__== "__main__":

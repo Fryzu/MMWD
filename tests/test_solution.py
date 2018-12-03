@@ -1,6 +1,9 @@
 import unittest
 from Solution import Solution
 
+import os #files and directories
+project_dir = os.path.dirname(os.path.abspath(__file__))
+
 class TestSolution(unittest.TestCase):
 
     @classmethod
@@ -8,7 +11,7 @@ class TestSolution(unittest.TestCase):
         self.solution = Solution()
 
         #imports test_file.json and loads it to the solution
-        with open('C:/Users/Sylwester/PycharmProjects/MMWDd/tests/test_solution.json', 'r') as r_file:
+        with open(os.path.join(project_dir, "test_solution.json"), 'r') as r_file:        
             self.solution.importFromJson(r_file)
 
         print("\nSoluion test case:\n======================")
@@ -21,9 +24,8 @@ class TestSolution(unittest.TestCase):
         self.assertEqual(actualJson, expectedJson)
 
     def test_neighbourhood(self):
-        #TODO nieghbourhood
-        pass
-
+        print("\nNeighbourhood:")
+        print(*self.solution.neighbourhood(), sep = "\n")
     def test_update_lines(self):
         newLines = [[0, 1, 2],[0, 1, 2],[0, 1, 2]]
         self.solution.updateLines(newLines)

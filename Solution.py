@@ -3,7 +3,7 @@ from math import inf
 from abc import ABC, abstractmethod
 import json
 import settings
-
+import copy
 
 class ISolution(ABC):
     '''Solution class interface for taboAlgo'''
@@ -38,6 +38,20 @@ class Solution(ISolution):
 
             self.lines.append(line)
 
+    def importFromJson(self, jsonString):
+        self.lines = json.load(jsonString)
+
+    def exportToJson(self):
+        return json.dumps(self.lines, indent=4, sort_keys=True)
+
+    def __str__(self):
+        result = 'SOLUTION\n======================'
+        for i in self.lines:
+            result += '\n'
+            result += "Line" + str(i)
+        result += '\n'+"Cost: " + str(self.cost)
+        return result
+
     def updateLines(self, lines):
         self.lines = lines
 
@@ -57,25 +71,41 @@ class Solution(ISolution):
         self.lines = solution.getLines()
         self.cost = solution.getCost()
 
-    def isequal(self,solution):
+    def isequal(self, solution):
         if self.lines == solution.lines:
             return True
         else:
             return False
 
     def neighbourhood(self):
-        pass
+        neigbourhood = []
 
-    def importFromJson(self, jsonString):
-        self.lines = json.load(jsonString)
+        neigbourhood += self.changeOneBusStop()
 
-    def exportToJson(self):
-        return json.dumps(self.lines, indent=4, sort_keys=True)
+        return neigbourhood
 
-    def __str__(self):
-        result = 'SOLUTION\n======================'
-        for i in self.lines:
-            result += '\n'
-            result += "Line" + str(i)
-        result += '\n'+"Cost: " + str(self.cost)
-        return result
+    def changeOneBusStop(self):## sąsiedztwo1: wymiana jednego przystanku z linii na inny jesli jest to możliwe
+        newNeighnourhood = []
+
+        # TODO: sprawdzic czy nie ma 2 identycznych przystankow
+
+        for line in range(0, len(self.lines)):
+            # for one line
+            for busStop in range(0, len(self.lines[line])):
+                if busStop == 0:
+                    for x in range(0, settings.MAP_SIZE):
+                        # check if connection exists
+                        if x != self.lines[line][busStop+1]:   
+                            newNeighnourhood.append(copy.deepcopy(self.lines))
+                            newNeighnourhood[-1][line][busStop] = x
+                if busStop == len(self.lines[line]) - 1:
+                    for x in range(0, settings.MAP_SIZE):
+                        if x != self.lines[line][busStop-1]:
+                            newNeighnourhood.append(copy.deepcopy(self.lines))
+                            newNeighnourhood[-1][line][busStop] = x
+                else:
+                    for x in range(0, settings.MAP_SIZE):
+                        if x != self.lines[line][busStop+1] and x != self.lines[line][busStop-1]:
+                            newNeighnourhood.append(copy.deepcopy(self.lines))
+                            newNeighnourhood[-1][line][busStop] = x
+        return newNeighnourhood
