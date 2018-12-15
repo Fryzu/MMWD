@@ -24,16 +24,39 @@ class TaboAlgo:
 
         self.neighbour = Solution()##to ma byc nowa zmienna
         self.bestLines = copy.deepcopy(self.solution.getLines())
-        self.bestLinesCost = self.cost()
+        self.bestLinesCost = self.cost(self.solution.lines)
 
     def iterate(self):
-        neighbours = self.solution.neighbourhood() 
-        for x in range(0, len(neighbours)):
-            self.solution.updateLines(neighbours[x])
-            actualCost = self.cost()
-            if actualCost < self.bestLinesCost:
-                self.bestLinesCost = actualCost
-                self.bestLines = copy.deepcopy(self.solution.getLines())
+        neighbours = self.solution.neighbourhood()
+        best = self.findBest(neighbours)
+        if(best == False):
+            print("pusta lista tabu")
+            return False
+        self.solution.lines = copy.deepcopy(best)
+        actualCost = self.cost(self.solution.lines)
+        if actualCost > self.bestLinesCost:
+            self.bestLinesCost = actualCost
+            self.bestLines = copy.deepcopy(self.solution.lines)
+        self.taboList.add(copy.deepcopy(self.solution.lines))
+        self.taboList.update()
+
+
+        """for x in range(0, len(neighbours)):
+            if not self.taboList.check(neighbours[x]):
+                self.solution.updateLines(neighbours[x])
+                actualCost = self.cost()
+                if x == 0:
+                    bestNeighbourCost = actualCost
+                    bestNeighbour = copy.deepcopy(self.solution.getLines())
+                if actualCost < bestNeighbourCost:
+                    bestNeighbourCost = actualCost
+                    bestNeighbour = copy.deepcopy(self.solution.getLines())
+        if bestNeighbourCost < self.bestLinesCost:
+            self.bestLinesCost = bestNeighbourCost
+            self.bestLines = copy.deepcopy(bestNeighbour)
+        self.solution.updateLines(copy.deepcopy(bestNeighbour))
+        self.taboList.add(bestNeighbour)
+        self.taboList.update()"""
 
         """ self.solution.setCost(self.cost())
         best = copy.deepcopy(self.neighbour)
@@ -58,21 +81,21 @@ class TaboAlgo:
         return bestNieghbour
         pass """
     
-    def cost(self):
+    def cost(self,lines):
         #Value function calculating
         result = 0
         #result = self.city.getTraffic(1, 2)
         for i in range(0, settings.MAP_SIZE):
             for j in range(0, settings.MAP_SIZE):
                 if i != j:
-                    result += self.costFunctionCheck(i,j)*self.city.getTraffic(i, j)
+                    result += self.costFunctionCheck(i,j,lines)*self.city.getTraffic(i, j)
         return result
 
-    def costFunctionCheck(self, x, y):
+    def costFunctionCheck(self, x, y,lines):
         minimum = 0
         globalmin = inf
         abd = 0
-        for line in self.solution.lines: ##potem mozna robic do aktualniej liczby linii metoda do solution
+        for line in lines: ##potem mozna robic do aktualniej liczby linii metoda do solution
             for i in range(0, len(line)):##przechodznie po lini w poszukiwaniu przystanku x
                 if line[i] == x:## jesli znaleziono przystanek x
                     for m in range(0, len(line)):##szukanie przystanku Y w linii
@@ -102,6 +125,25 @@ class TaboAlgo:
             return settings.PENALTY
         else:
             return globalmin
+
+    def findBest(self,neighbours):
+        neighbours = self.filtr(neighbours)
+        if not neighbours:##is not empty
+            return False
+        actualcost = self.cost(self.solution.lines)
+        best = self.cost(neighbours[0]) - actualcost
+        bestneighbour = neighbours[0]
+        for neighbour in neighbours:
+            if not self.taboList.check(neighbour):##is in tabu list ?
+                cost = self.cost(neighbour) - actualcost
+                if(cost>actualcost):
+                    best = cost
+                    bestneighbour = neighbour
+        return bestneighbour
+
+    def filtr(self,neighbours):
+    ##sprawdz czy jest polaczenie miedzy przystankami
+        return neighbours
 
     def checkNeighbour(self, x, y):
         minimum = 0
@@ -137,3 +179,5 @@ class TaboAlgo:
             return settings.PENALTY
         else:
             return globalmin
+
+

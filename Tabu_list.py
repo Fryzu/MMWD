@@ -8,10 +8,8 @@ class TabuList:
         self.list = []
 
 
-    def add(self, solution):
-        TMP= Solution()
-        TMP.setAll(solution)
-        self.list.append([TMP,settings.TABUTIME])
+    def add(self, list):
+        self.list.append([list,settings.TABUTIME])
 
     def update(self):
         for i in range(0,len(self.list)):
@@ -19,11 +17,11 @@ class TabuList:
         if self.list[0][1] == 0:
             self.list.pop(0)
 
-    def check(self, solution):
+    def check(self, List):
         if not self.list:
             return False
         for i in range(0,len(self.list)):
-            if solution.isequal(self.list[i][0]):
+            if List == self.list[i][0]:
                 return True
         return False
 

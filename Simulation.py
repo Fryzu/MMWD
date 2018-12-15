@@ -7,8 +7,7 @@ PENALTY = 0
 
 class Simulation:
     def simulate(self, iterationsCount, startPoint = None):
-        '''Simulate iterationsCount iterations with starting point. 
-        When no starting point generates random.'''
+
         pass
 
     def save():

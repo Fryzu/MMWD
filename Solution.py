@@ -86,7 +86,7 @@ class Solution(ISolution):
     # types of neighbourhoods
     def changeOneBusStop(self):## sąsiedztwo1: wymiana jednego przystanku z linii na inny jesli jest to możliwe
         newNeighnourhood = []
-
+        newNeighnourhood.clear()
         # TODO: sprawdzic czy nie ma 2 identycznych przystankow
 
         for line in range(0, len(self.lines)):
@@ -95,17 +95,24 @@ class Solution(ISolution):
                 if busStop == 0:
                     for x in range(0, settings.MAP_SIZE):
                         # check if connection exists
-                        if x != self.lines[line][busStop+1]:   
+                        if x != self.lines[line][busStop+1]and x != self.lines[line][busStop] and not self.isAlredyInLine(x,line):
                             newNeighnourhood.append(copy.deepcopy(self.lines))
                             newNeighnourhood[-1][line][busStop] = x
                 if busStop == len(self.lines[line]) - 1:
                     for x in range(0, settings.MAP_SIZE):
-                        if x != self.lines[line][busStop-1]:
+                        if x != self.lines[line][busStop-1]and x != self.lines[line][busStop]and not self.isAlredyInLine(x,line):
                             newNeighnourhood.append(copy.deepcopy(self.lines))
                             newNeighnourhood[-1][line][busStop] = x
                 else:
                     for x in range(0, settings.MAP_SIZE):
-                        if x != self.lines[line][busStop+1] and x != self.lines[line][busStop-1]:
+                        if x != self.lines[line][busStop+1] and x != self.lines[line][busStop-1] and x != self.lines[line][busStop] and not self.isAlredyInLine(x,line):
                             newNeighnourhood.append(copy.deepcopy(self.lines))
                             newNeighnourhood[-1][line][busStop] = x
         return newNeighnourhood
+
+    def isAlredyInLine(self,x,line):
+        for i in range(0, len(self.lines[line])):
+            if x == self.lines[line][i]:
+                return True
+            else:
+                return False
