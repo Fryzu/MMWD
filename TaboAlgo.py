@@ -35,6 +35,8 @@ class TaboAlgo:
                 self.bestLinesCost = actualCost
                 self.bestLines = copy.deepcopy(self.solution.getLines())
 
+    # TODO: zaimplemenotwać cechy algorytmu do analizy 
+
         """ self.solution.setCost(self.cost())
         best = copy.deepcopy(self.neighbour)
         print(best)
@@ -73,41 +75,6 @@ class TaboAlgo:
         globalmin = inf
         abd = 0
         for line in self.solution.lines: ##potem mozna robic do aktualniej liczby linii metoda do solution
-            for i in range(0, len(line)):##przechodznie po lini w poszukiwaniu przystanku x
-                if line[i] == x:## jesli znaleziono przystanek x
-                    for m in range(0, len(line)):##szukanie przystanku Y w linii
-                        if line[m] == y:
-                            minimum = 0
-                            if m > i:
-                                for n in range(i, m,1):
-                                    next = self.city.getDistance(line[n], line[n+1])
-                                    if next == inf:## zabezpieczenie przed inf czyli braku połączenia między przystankami
-                                        minimum = inf
-                                        break
-                                    minimum += next## to samo tylko dla przypadku y>x
-                            if m < i:
-                                for n in range(i, m,-1):
-                                    next = self.city.getDistance(line[n], line[n-1])
-                                    if next == inf:
-                                        minimum = inf
-                                        break
-                                    minimum += next## to samo tylko dla przy
-                            if globalmin > minimum:
-                                globalmin = minimum##globalnie najmniejsza trasa
-                        else:
-                            continue
-                else:
-                    continue
-        if globalmin == inf:##jesli nigdzie nie znaleziono polączenia czyli globalmin  = 0 to wyslij kare
-            return settings.PENALTY
-        else:
-            return globalmin
-
-    def checkNeighbour(self, x, y):
-        minimum = 0
-        globalmin = inf
-        abd = 0
-        for line in self.neighbour.lines: ##potem mozna robic do aktualniej liczby linii metoda do solution
             for i in range(0, len(line)):##przechodznie po lini w poszukiwaniu przystanku x
                 if line[i] == x:## jesli znaleziono przystanek x
                     for m in range(0, len(line)):##szukanie przystanku Y w linii

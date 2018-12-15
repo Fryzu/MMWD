@@ -81,13 +81,15 @@ class Solution(ISolution):
         neigbourhood = []
         neigbourhood += self.changeOneBusStop()
 
+        # TODO: sprawdzic czy nie ma 2 identycznych przystankow
+        # TODO: przefiltrować czy sie nie powtarza
+
         return neigbourhood
 
     # types of neighbourhoods
     def changeOneBusStop(self):## sąsiedztwo1: wymiana jednego przystanku z linii na inny jesli jest to możliwe
         newNeighnourhood = []
 
-        # TODO: sprawdzic czy nie ma 2 identycznych przystankow
 
         for line in range(0, len(self.lines)):
             # for one line
