@@ -30,7 +30,7 @@ class TaboAlgo:
         neighbours = self.solution.neighbourhood()
         best = self.findBest(neighbours)
         if(best == False):
-            print("pusta lista tabu")
+            #print("pusta lista tabu")
             return False
         self.solution.lines = copy.deepcopy(best)
         actualCost = self.cost(self.solution.lines)

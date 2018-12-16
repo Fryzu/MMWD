@@ -1,4 +1,7 @@
 class Simulation:
+    def __init__(self):
+        pass
+
     def simulate(self, iterationsCount, startPoint = None):
 
         pass
