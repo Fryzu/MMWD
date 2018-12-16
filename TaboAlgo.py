@@ -127,22 +127,48 @@ class TaboAlgo:
             return globalmin
 
     def findBest(self,neighbours):
-        neighbours = self.filtr(neighbours)
         if not neighbours:##is not empty
             return False
+        neighbours = self.filtr(neighbours)
         actualcost = self.cost(self.solution.lines)
         best = self.cost(neighbours[0]) - actualcost
         bestneighbour = neighbours[0]
         for neighbour in neighbours:
             if not self.taboList.check(neighbour):##is in tabu list ?
                 cost = self.cost(neighbour) - actualcost
-                if(cost>actualcost):
+                if(cost>best):
                     best = cost
                     bestneighbour = neighbour
         return bestneighbour
 
     def filtr(self,neighbours):
     ##sprawdz czy jest polaczenie miedzy przystankami
+        #toRemove = []
+        for i in range(0,len(neighbours)):
+            count = neighbours.count(neighbours[i])
+            if count>1:
+                for n in range(0,count-1):
+                    index = neighbours.index((neighbours[i]))
+                    #toRemove.append(index)
+                    neighbours[index] = False
+        neighbours = [elem for elem in neighbours if elem != False]#usuwanie elementów z false
+        #toRemove.clear()##usuwanie powtarzajacych sie elementow etap pierwszy usuwanie powtarzających się linii w liscie neighbours
+        """for solution in range(0,len(neighbours)):
+            flag = 0
+            if neighbours[solution] != False:
+                for line in range(0,len(neighbours[solution])):
+                    if flag == 1:
+                        break
+                    for busa in range(0,len(neighbours[solution][line])):
+                        count = neighbours[solution][line].count(neighbours[solution][line][busa])
+                        if count>1:
+                            flag = 1
+                            break
+            if flag == 1:
+                neighbours[i] = False
+            neighbours = [elem for elem in neighbours if elem != False]#usuwanie elementów z false
+            #toRemove.clear()##etap 2 usuwanie linii w których przystanki powtarzają sie
+        """
         return neighbours
 
     def checkNeighbour(self, x, y):
