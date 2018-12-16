@@ -34,7 +34,7 @@ class TaboAlgo:
             return False
         self.solution.lines = copy.deepcopy(best)
         actualCost = self.cost(self.solution.lines)
-        if actualCost > self.bestLinesCost:
+        if actualCost < self.bestLinesCost:
             self.bestLinesCost = actualCost
             self.bestLines = copy.deepcopy(self.solution.lines)
         self.taboList.add(copy.deepcopy(self.solution.lines))
@@ -133,11 +133,11 @@ class TaboAlgo:
             return False
         neighbours = self.filtr(neighbours)
         actualcost = self.cost(self.solution.lines)
-        best = self.cost(neighbours[0]) - actualcost
+        best = actualcost -  self.cost(neighbours[0])
         bestneighbour = neighbours[0]
         for neighbour in neighbours:
             if not self.taboList.check(neighbour):##is in tabu list ?
-                cost = self.cost(neighbour) - actualcost
+                cost = actualcost - self.cost(neighbour)
                 if(cost>best):
                     best = cost
                     bestneighbour = neighbour
