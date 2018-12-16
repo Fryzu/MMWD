@@ -114,5 +114,4 @@ class Solution(ISolution):
         for i in range(0, len(self.lines[line])):
             if x == self.lines[line][i]:
                 return True
-            else:
-                return False
+        return False
