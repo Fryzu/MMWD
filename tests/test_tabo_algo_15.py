@@ -29,7 +29,7 @@ class TestTaboAlgo15(unittest.TestCase):
         print("cost: ", self.taboAlgo.bestLinesCost)
         print(self.taboAlgo.bestLines)
         n = 0
-        while n <10:
+        while n <100:
             n+=1
             self.taboAlgo.iterate()
         print("After iteration:")
