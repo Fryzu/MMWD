@@ -7,26 +7,22 @@ import settings
 import os #files and directories
 project_dir = os.path.dirname(os.path.abspath(__file__))
 
-class TestTaboAlgo(unittest.TestCase):
+class TestTaboAlgo15(unittest.TestCase):
     
     @classmethod
     def setUpClass(self):
         print("\nTabo algo test case\n======================")
 
         #initializing a test taboalgo
+        settings.MAP_SIZE = 15
+        settings.LINE_LENGTH = 5
+        settings.LINES_NUMBER = 5
+
         city = City()
-        with open(os.path.join(project_dir, "test_city.json"), 'r') as r_file:
+        with open(os.path.join(project_dir, "test_city_15.json"), 'r') as r_file:
             city.importFromJson(r_file)
         solution = Solution()
-        with open(os.path.join(project_dir, "test_solution.json"), 'r') as r_file:
-            solution.importFromJson(r_file)
         self.taboAlgo = TaboAlgo(city, solution)
-
-    def test_cost_function(self):
-        print("\nTest cost:")
-        print("cost: ", self.taboAlgo.bestLinesCost)
-        self.assertEqual(self.taboAlgo.cost(), 173)
-        pass
 
     def test_iterate(self):
         print("\nBefore iteration:")

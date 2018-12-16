@@ -1,0 +1,933 @@
+[
+    [
+        {
+            "distance": Infinity,
+            "traffic": Infinity
+        },
+        {
+            "distance": 177,
+            "traffic": 82
+        },
+        {
+            "distance": 194,
+            "traffic": 95
+        },
+        {
+            "distance": 200,
+            "traffic": 29
+        },
+        {
+            "distance": 185,
+            "traffic": 39
+        },
+        {
+            "distance": 184,
+            "traffic": 15
+        },
+        {
+            "distance": 178,
+            "traffic": 81
+        },
+        {
+            "distance": 169,
+            "traffic": 32
+        },
+        {
+            "distance": 160,
+            "traffic": 33
+        },
+        {
+            "distance": 144,
+            "traffic": 3
+        },
+        {
+            "distance": 52,
+            "traffic": 69
+        },
+        {
+            "distance": 53,
+            "traffic": 5
+        },
+        {
+            "distance": 57,
+            "traffic": 1
+        },
+        {
+            "distance": 62,
+            "traffic": 85
+        },
+        {
+            "distance": 65,
+            "traffic": 80
+        }
+    ],
+    [
+        {
+            "distance": 177,
+            "traffic": 42
+        },
+        {
+            "distance": Infinity,
+            "traffic": Infinity
+        },
+        {
+            "distance": 20,
+            "traffic": 9
+        },
+        {
+            "distance": 52,
+            "traffic": 13
+        },
+        {
+            "distance": 61,
+            "traffic": 27
+        },
+        {
+            "distance": 61,
+            "traffic": 97
+        },
+        {
+            "distance": 57,
+            "traffic": 22
+        },
+        {
+            "distance": 55,
+            "traffic": 87
+        },
+        {
+            "distance": 56,
+            "traffic": 71
+        },
+        {
+            "distance": 66,
+            "traffic": 49
+        },
+        {
+            "distance": 177,
+            "traffic": 51
+        },
+        {
+            "distance": 190,
+            "traffic": 41
+        },
+        {
+            "distance": 200,
+            "traffic": 6
+        },
+        {
+            "distance": 202,
+            "traffic": 55
+        },
+        {
+            "distance": 204,
+            "traffic": 14
+        }
+    ],
+    [
+        {
+            "distance": 194,
+            "traffic": 55
+        },
+        {
+            "distance": 20,
+            "traffic": 47
+        },
+        {
+            "distance": Infinity,
+            "traffic": Infinity
+        },
+        {
+            "distance": 38,
+            "traffic": 67
+        },
+        {
+            "distance": 53,
+            "traffic": 99
+        },
+        {
+            "distance": 53,
+            "traffic": 39
+        },
+        {
+            "distance": 51,
+            "traffic": 7
+        },
+        {
+            "distance": 52,
+            "traffic": 55
+        },
+        {
+            "distance": 57,
+            "traffic": 47
+        },
+        {
+            "distance": 70,
+            "traffic": 85
+        },
+        {
+            "distance": 190,
+            "traffic": 12
+        },
+        {
+            "distance": 203,
+            "traffic": 42
+        },
+        {
+            "distance": 214,
+            "traffic": 13
+        },
+        {
+            "distance": 215,
+            "traffic": 39
+        },
+        {
+            "distance": 217,
+            "traffic": 97
+        }
+    ],
+    [
+        {
+            "distance": 200,
+            "traffic": 25
+        },
+        {
+            "distance": 52,
+            "traffic": 71
+        },
+        {
+            "distance": 38,
+            "traffic": 66
+        },
+        {
+            "distance": Infinity,
+            "traffic": Infinity
+        },
+        {
+            "distance": 22,
+            "traffic": 29
+        },
+        {
+            "distance": 22,
+            "traffic": 83
+        },
+        {
+            "distance": 25,
+            "traffic": 34
+        },
+        {
+            "distance": 32,
+            "traffic": 19
+        },
+        {
+            "distance": 41,
+            "traffic": 65
+        },
+        {
+            "distance": 58,
+            "traffic": 1
+        },
+        {
+            "distance": 186,
+            "traffic": 8
+        },
+        {
+            "distance": 199,
+            "traffic": 82
+        },
+        {
+            "distance": 209,
+            "traffic": 20
+        },
+        {
+            "distance": 209,
+            "traffic": 37
+        },
+        {
+            "distance": 211,
+            "traffic": 26
+        }
+    ],
+    [
+        {
+            "distance": 185,
+            "traffic": 12
+        },
+        {
+            "distance": 61,
+            "traffic": 48
+        },
+        {
+            "distance": 53,
+            "traffic": 94
+        },
+        {
+            "distance": 22,
+            "traffic": 81
+        },
+        {
+            "distance": Infinity,
+            "traffic": Infinity
+        },
+        {
+            "distance": 0,
+            "traffic": 51
+        },
+        {
+            "distance": 7,
+            "traffic": 12
+        },
+        {
+            "distance": 15,
+            "traffic": 44
+        },
+        {
+            "distance": 24,
+            "traffic": 19
+        },
+        {
+            "distance": 40,
+            "traffic": 50
+        },
+        {
+            "distance": 167,
+            "traffic": 69
+        },
+        {
+            "distance": 180,
+            "traffic": 3
+        },
+        {
+            "distance": 190,
+            "traffic": 65
+        },
+        {
+            "distance": 190,
+            "traffic": 6
+        },
+        {
+            "distance": 191,
+            "traffic": 10
+        }
+    ],
+    [
+        {
+            "distance": 184,
+            "traffic": 29
+        },
+        {
+            "distance": 61,
+            "traffic": 18
+        },
+        {
+            "distance": 53,
+            "traffic": 42
+        },
+        {
+            "distance": 22,
+            "traffic": 72
+        },
+        {
+            "distance": 0,
+            "traffic": 3
+        },
+        {
+            "distance": Infinity,
+            "traffic": Infinity
+        },
+        {
+            "distance": 7,
+            "traffic": 27
+        },
+        {
+            "distance": 15,
+            "traffic": 21
+        },
+        {
+            "distance": 24,
+            "traffic": 97
+        },
+        {
+            "distance": 40,
+            "traffic": 70
+        },
+        {
+            "distance": 167,
+            "traffic": 14
+        },
+        {
+            "distance": 180,
+            "traffic": 82
+        },
+        {
+            "distance": 190,
+            "traffic": 99
+        },
+        {
+            "distance": 190,
+            "traffic": 85
+        },
+        {
+            "distance": 191,
+            "traffic": 9
+        }
+    ],
+    [
+        {
+            "distance": 178,
+            "traffic": 76
+        },
+        {
+            "distance": 57,
+            "traffic": 65
+        },
+        {
+            "distance": 51,
+            "traffic": 21
+        },
+        {
+            "distance": 25,
+            "traffic": 98
+        },
+        {
+            "distance": 7,
+            "traffic": 81
+        },
+        {
+            "distance": 7,
+            "traffic": 24
+        },
+        {
+            "distance": Infinity,
+            "traffic": Infinity
+        },
+        {
+            "distance": 8,
+            "traffic": 54
+        },
+        {
+            "distance": 17,
+            "traffic": 75
+        },
+        {
+            "distance": 34,
+            "traffic": 94
+        },
+        {
+            "distance": 161,
+            "traffic": 9
+        },
+        {
+            "distance": 174,
+            "traffic": 77
+        },
+        {
+            "distance": 184,
+            "traffic": 21
+        },
+        {
+            "distance": 184,
+            "traffic": 48
+        },
+        {
+            "distance": 185,
+            "traffic": 1
+        }
+    ],
+    [
+        {
+            "distance": 169,
+            "traffic": 22
+        },
+        {
+            "distance": 55,
+            "traffic": 72
+        },
+        {
+            "distance": 52,
+            "traffic": 75
+        },
+        {
+            "distance": 32,
+            "traffic": 36
+        },
+        {
+            "distance": 15,
+            "traffic": 44
+        },
+        {
+            "distance": 15,
+            "traffic": 7
+        },
+        {
+            "distance": 8,
+            "traffic": 10
+        },
+        {
+            "distance": Infinity,
+            "traffic": Infinity
+        },
+        {
+            "distance": 9,
+            "traffic": 12
+        },
+        {
+            "distance": 26,
+            "traffic": 4
+        },
+        {
+            "distance": 153,
+            "traffic": 93
+        },
+        {
+            "distance": 166,
+            "traffic": 76
+        },
+        {
+            "distance": 177,
+            "traffic": 23
+        },
+        {
+            "distance": 177,
+            "traffic": 65
+        },
+        {
+            "distance": 178,
+            "traffic": 37
+        }
+    ],
+    [
+        {
+            "distance": 160,
+            "traffic": 27
+        },
+        {
+            "distance": 56,
+            "traffic": 8
+        },
+        {
+            "distance": 57,
+            "traffic": 98
+        },
+        {
+            "distance": 41,
+            "traffic": 36
+        },
+        {
+            "distance": 24,
+            "traffic": 27
+        },
+        {
+            "distance": 24,
+            "traffic": 79
+        },
+        {
+            "distance": 17,
+            "traffic": 92
+        },
+        {
+            "distance": 9,
+            "traffic": 32
+        },
+        {
+            "distance": Infinity,
+            "traffic": Infinity
+        },
+        {
+            "distance": 17,
+            "traffic": 41
+        },
+        {
+            "distance": 144,
+            "traffic": 47
+        },
+        {
+            "distance": 158,
+            "traffic": 37
+        },
+        {
+            "distance": 168,
+            "traffic": 73
+        },
+        {
+            "distance": 168,
+            "traffic": 20
+        },
+        {
+            "distance": 169,
+            "traffic": 20
+        }
+    ],
+    [
+        {
+            "distance": 144,
+            "traffic": 84
+        },
+        {
+            "distance": 66,
+            "traffic": 72
+        },
+        {
+            "distance": 70,
+            "traffic": 92
+        },
+        {
+            "distance": 58,
+            "traffic": 14
+        },
+        {
+            "distance": 40,
+            "traffic": 90
+        },
+        {
+            "distance": 40,
+            "traffic": 10
+        },
+        {
+            "distance": 34,
+            "traffic": 62
+        },
+        {
+            "distance": 26,
+            "traffic": 45
+        },
+        {
+            "distance": 17,
+            "traffic": 70
+        },
+        {
+            "distance": Infinity,
+            "traffic": Infinity
+        },
+        {
+            "distance": 127,
+            "traffic": 100
+        },
+        {
+            "distance": 140,
+            "traffic": 9
+        },
+        {
+            "distance": 150,
+            "traffic": 30
+        },
+        {
+            "distance": 150,
+            "traffic": 80
+        },
+        {
+            "distance": 152,
+            "traffic": 94
+        }
+    ],
+    [
+        {
+            "distance": 52,
+            "traffic": 49
+        },
+        {
+            "distance": 177,
+            "traffic": 100
+        },
+        {
+            "distance": 190,
+            "traffic": 12
+        },
+        {
+            "distance": 186,
+            "traffic": 18
+        },
+        {
+            "distance": 167,
+            "traffic": 65
+        },
+        {
+            "distance": 167,
+            "traffic": 49
+        },
+        {
+            "distance": 161,
+            "traffic": 93
+        },
+        {
+            "distance": 153,
+            "traffic": 94
+        },
+        {
+            "distance": 144,
+            "traffic": 5
+        },
+        {
+            "distance": 127,
+            "traffic": 68
+        },
+        {
+            "distance": Infinity,
+            "traffic": Infinity
+        },
+        {
+            "distance": 13,
+            "traffic": 85
+        },
+        {
+            "distance": 23,
+            "traffic": 75
+        },
+        {
+            "distance": 24,
+            "traffic": 66
+        },
+        {
+            "distance": 27,
+            "traffic": 52
+        }
+    ],
+    [
+        {
+            "distance": 53,
+            "traffic": 50
+        },
+        {
+            "distance": 190,
+            "traffic": 43
+        },
+        {
+            "distance": 203,
+            "traffic": 60
+        },
+        {
+            "distance": 199,
+            "traffic": 58
+        },
+        {
+            "distance": 180,
+            "traffic": 85
+        },
+        {
+            "distance": 180,
+            "traffic": 33
+        },
+        {
+            "distance": 174,
+            "traffic": 27
+        },
+        {
+            "distance": 166,
+            "traffic": 34
+        },
+        {
+            "distance": 158,
+            "traffic": 58
+        },
+        {
+            "distance": 140,
+            "traffic": 76
+        },
+        {
+            "distance": 13,
+            "traffic": 9
+        },
+        {
+            "distance": Infinity,
+            "traffic": Infinity
+        },
+        {
+            "distance": 10,
+            "traffic": 51
+        },
+        {
+            "distance": 12,
+            "traffic": 34
+        },
+        {
+            "distance": 15,
+            "traffic": 87
+        }
+    ],
+    [
+        {
+            "distance": 57,
+            "traffic": 96
+        },
+        {
+            "distance": 200,
+            "traffic": 70
+        },
+        {
+            "distance": 214,
+            "traffic": 72
+        },
+        {
+            "distance": 209,
+            "traffic": 97
+        },
+        {
+            "distance": 190,
+            "traffic": 98
+        },
+        {
+            "distance": 190,
+            "traffic": 44
+        },
+        {
+            "distance": 184,
+            "traffic": 17
+        },
+        {
+            "distance": 177,
+            "traffic": 79
+        },
+        {
+            "distance": 168,
+            "traffic": 66
+        },
+        {
+            "distance": 150,
+            "traffic": 10
+        },
+        {
+            "distance": 23,
+            "traffic": 55
+        },
+        {
+            "distance": 10,
+            "traffic": 88
+        },
+        {
+            "distance": Infinity,
+            "traffic": Infinity
+        },
+        {
+            "distance": 5,
+            "traffic": 53
+        },
+        {
+            "distance": 8,
+            "traffic": 95
+        }
+    ],
+    [
+        {
+            "distance": 62,
+            "traffic": 1
+        },
+        {
+            "distance": 202,
+            "traffic": 30
+        },
+        {
+            "distance": 215,
+            "traffic": 95
+        },
+        {
+            "distance": 209,
+            "traffic": 31
+        },
+        {
+            "distance": 190,
+            "traffic": 99
+        },
+        {
+            "distance": 190,
+            "traffic": 100
+        },
+        {
+            "distance": 184,
+            "traffic": 6
+        },
+        {
+            "distance": 177,
+            "traffic": 27
+        },
+        {
+            "distance": 168,
+            "traffic": 66
+        },
+        {
+            "distance": 150,
+            "traffic": 7
+        },
+        {
+            "distance": 24,
+            "traffic": 69
+        },
+        {
+            "distance": 12,
+            "traffic": 1
+        },
+        {
+            "distance": 5,
+            "traffic": 32
+        },
+        {
+            "distance": Infinity,
+            "traffic": Infinity
+        },
+        {
+            "distance": 3,
+            "traffic": 66
+        }
+    ],
+    [
+        {
+            "distance": 65,
+            "traffic": 39
+        },
+        {
+            "distance": 204,
+            "traffic": 94
+        },
+        {
+            "distance": 217,
+            "traffic": 75
+        },
+        {
+            "distance": 211,
+            "traffic": 55
+        },
+        {
+            "distance": 191,
+            "traffic": 38
+        },
+        {
+            "distance": 191,
+            "traffic": 70
+        },
+        {
+            "distance": 185,
+            "traffic": 12
+        },
+        {
+            "distance": 178,
+            "traffic": 68
+        },
+        {
+            "distance": 169,
+            "traffic": 12
+        },
+        {
+            "distance": 152,
+            "traffic": 77
+        },
+        {
+            "distance": 27,
+            "traffic": 81
+        },
+        {
+            "distance": 15,
+            "traffic": 45
+        },
+        {
+            "distance": 8,
+            "traffic": 40
+        },
+        {
+            "distance": 3,
+            "traffic": 82
+        },
+        {
+            "distance": Infinity,
+            "traffic": Infinity
+        }
+    ]
+]
+

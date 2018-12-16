@@ -81,7 +81,9 @@ class TaboAlgo:
         return bestNieghbour
         pass """
     
-    def cost(self,lines):
+    def cost(self,lines = None):
+        if lines == None:
+            lines = self.solution.lines
         #Value function calculating
         result = 0
         #result = self.city.getTraffic(1, 2)
@@ -91,7 +93,7 @@ class TaboAlgo:
                     result += self.costFunctionCheck(i,j,lines)*self.city.getTraffic(i, j)
         return result
 
-    def costFunctionCheck(self, x, y,lines):
+    def costFunctionCheck(self, x, y, lines):
         minimum = 0
         globalmin = inf
         abd = 0

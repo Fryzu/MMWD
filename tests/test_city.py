@@ -1,5 +1,6 @@
 import unittest
 from City import City
+import settings
 
 import os #files and directories
 project_dir = os.path.dirname(os.path.abspath(__file__))
@@ -27,6 +28,17 @@ class TestCity(unittest.TestCase):
     def test_getters(self):
         self.assertEqual(self.city.getDistance(1, 2), 2)
         self.assertEqual(self.city.getTraffic(1, 2), 3)
+
+    def test_size_15(self):
+        settings.MAP_SIZE = 15
+        c = City()
+        with open(os.path.join(project_dir, "test_city_15.json"), 'r') as r_file:
+            c.importFromJson(r_file)
+
+        print("\nCity test 15 size:\n======================")
+        print(c.printDistance())
+        print(c.printTraffic())
+        settings.MAP_SIZE = 3
 
 if __name__== "__main__":
     unittest.main()
