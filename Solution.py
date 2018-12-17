@@ -98,16 +98,22 @@ class Solution(ISolution):
                         if x != self.lines[line][busStop+1]and x != self.lines[line][busStop] and not self.isAlredyInLine(x,line):
                             newNeighnourhood.append(copy.deepcopy(self.lines))
                             newNeighnourhood[-1][line][busStop] = x
+                            if newNeighnourhood.count(newNeighnourhood[-1]) > 1:
+                                newNeighnourhood.pop()
                 if busStop == len(self.lines[line]) - 1:
                     for x in range(0, settings.MAP_SIZE):
                         if x != self.lines[line][busStop-1]and x != self.lines[line][busStop]and not self.isAlredyInLine(x,line):
                             newNeighnourhood.append(copy.deepcopy(self.lines))
                             newNeighnourhood[-1][line][busStop] = x
+                            if newNeighnourhood.count(newNeighnourhood[-1]) > 1:
+                                newNeighnourhood.pop()
                 else:
                     for x in range(0, settings.MAP_SIZE):
                         if x != self.lines[line][busStop+1] and x != self.lines[line][busStop-1] and x != self.lines[line][busStop] and not self.isAlredyInLine(x,line):
                             newNeighnourhood.append(copy.deepcopy(self.lines))
                             newNeighnourhood[-1][line][busStop] = x
+                            if newNeighnourhood.count(newNeighnourhood[-1]) > 1:
+                                newNeighnourhood.pop()
         return newNeighnourhood
 
     def isAlredyInLine(self,x,line):

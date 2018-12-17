@@ -25,10 +25,17 @@ class TestTaboAlgo15(unittest.TestCase):
         self.taboAlgo = TaboAlgo(city, solution)
 
     def test_iterate(self):
+        settings.ITERATION = 1000
+        bestLinesCost = self.taboAlgo.bestLinesCost
+        bestLines = self.taboAlgo.bestLines
+        n = 0
+        while n <settings.ITERATION:
+            n+=1
+            print("Postęp: " + str(n*100/settings.ITERATION)+"%")
+            self.taboAlgo.iterate()
         print("\nBefore iteration:")
-        print("cost: ", self.taboAlgo.bestLinesCost)
-        print(self.taboAlgo.bestLines)
-        self.taboAlgo.iterate()
+        print("cost: ", bestLinesCost)
+        print(bestLines)
         print("After iteration:")
         print("cost: ", self.taboAlgo.bestLinesCost)
         print(self.taboAlgo.bestLines)
