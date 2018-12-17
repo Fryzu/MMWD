@@ -16,7 +16,7 @@ class TestTaboAlgo15(unittest.TestCase):
         #initializing a test taboalgo
         settings.MAP_SIZE = 15
         settings.LINE_LENGTH = 5
-        settings.LINES_NUMBER = 5
+        settings.LINES_NUMBER = 3
 
         city = City()
         with open(os.path.join(project_dir, "test_city_15.json"), 'r') as r_file:
@@ -28,10 +28,7 @@ class TestTaboAlgo15(unittest.TestCase):
         print("\nBefore iteration:")
         print("cost: ", self.taboAlgo.bestLinesCost)
         print(self.taboAlgo.bestLines)
-        n = 0
-        while n <100:
-            n+=1
-            self.taboAlgo.iterate()
+        self.taboAlgo.iterate()
         print("After iteration:")
         print("cost: ", self.taboAlgo.bestLinesCost)
         print(self.taboAlgo.bestLines)
