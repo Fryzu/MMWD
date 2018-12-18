@@ -21,10 +21,10 @@ class TaboAlgo:
             self.solution = solution
         else:
             self.solution = Solution()
-
         self.neighbour = Solution()##to ma byc nowa zmienna
         self.bestLines = copy.deepcopy(self.solution.getLines())
         self.bestLinesCost = self.cost(self.solution.lines)
+        self.actualCost = copy.deepcopy(self.bestLinesCost)
 
     def iterate(self):
         neighbours = self.solution.neighbourhood()
@@ -33,9 +33,9 @@ class TaboAlgo:
             #print("pusta lista tabu")
             return False
         self.solution.lines = copy.deepcopy(best)
-        actualCost = self.cost(self.solution.lines)
-        if actualCost < self.bestLinesCost:
-            self.bestLinesCost = actualCost
+        self.actualCost = self.cost(self.solution.lines)
+        if self.actualCost < self.bestLinesCost:
+            self.bestLinesCost = self.actualCost
             self.bestLines = copy.deepcopy(self.solution.lines)
         self.taboList.add(copy.deepcopy(self.solution.lines))
         self.taboList.update()
@@ -146,7 +146,7 @@ class TaboAlgo:
     def filtr(self,neighbours):
     ##sprawdz czy jest polaczenie miedzy przystankami
         #toRemove = []
-        for i in range(0,len(neighbours)):
+        """for i in range(0,len(neighbours)):
             count = neighbours.count(neighbours[i])
             if count>1:
                 for n in range(0,count-1):
@@ -155,7 +155,7 @@ class TaboAlgo:
                     neighbours[index] = False
         neighbours = [elem for elem in neighbours if elem != False]#usuwanie elementów z false
         #toRemove.clear()##usuwanie powtarzajacych sie elementow etap pierwszy usuwanie powtarzających się linii w liscie neighbours
-        """for solution in range(0,len(neighbours)):
+        for solution in range(0,len(neighbours)):
             flag = 0
             if neighbours[solution] != False:
                 for line in range(0,len(neighbours[solution])):

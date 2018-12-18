@@ -7,7 +7,6 @@ class TabuList:
     def __init__(self):
         self.list = []
 
-
     def add(self, list):
         self.list.append([list,settings.TABUTIME])
 

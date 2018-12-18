@@ -3,6 +3,11 @@ from Solution import Solution
 from City import City
 from TaboAlgo import TaboAlgo
 import settings
+import json
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
 
 import os #files and directories
 project_dir = os.path.dirname(os.path.abspath(__file__))
@@ -25,10 +30,22 @@ class TestTaboAlgo15(unittest.TestCase):
         self.taboAlgo = TaboAlgo(city, solution)
 
     def test_iterate(self):
+        bestLinesCost = self.taboAlgo.bestLinesCost
+        bestLines = self.taboAlgo.bestLines
+
+        costRun = []
+
+        for i in range(100):
+            self.taboAlgo.iterate()
+            costRun.append(self.taboAlgo.actualCost)
+            print(i, "%")
+        plt.plot(range(100), costRun)
+
+        plt.grid()
+        plt.show()
         print("\nBefore iteration:")
-        print("cost: ", self.taboAlgo.bestLinesCost)
-        print(self.taboAlgo.bestLines)
-        self.taboAlgo.iterate()
+        print("cost: ", bestLinesCost)
+        print(bestLines)
         print("After iteration:")
         print("cost: ", self.taboAlgo.bestLinesCost)
         print(self.taboAlgo.bestLines)
