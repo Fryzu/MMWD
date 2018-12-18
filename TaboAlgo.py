@@ -131,7 +131,7 @@ class TaboAlgo:
     def findBest(self,neighbours):
         if not neighbours:##is not empty
             return False
-        neighbours = self.filtr(neighbours)
+        #neighbours = self.filtr(neighbours)
         actualcost = self.cost(self.solution.lines)
         best = actualcost -  self.cost(neighbours[0])
         bestneighbour = neighbours[0]
@@ -143,6 +143,7 @@ class TaboAlgo:
                     bestneighbour = neighbour
         return bestneighbour
 
+<<<<<<< HEAD
     def filtr(self,neighbours):
     ##sprawdz czy jest polaczenie miedzy przystankami
         #toRemove = []
@@ -160,18 +161,35 @@ class TaboAlgo:
             if neighbours[solution] != False:
                 for line in range(0,len(neighbours[solution])):
                     if flag == 1:
+=======
+    ##def filtr(self,neighbours): #toRemove = []
+    """for i in range(0,len(neighbours)):
+        count = neighbours.count(neighbours[i])
+        if count>1:
+            for n in range(0,count-1):
+                index = neighbours.index((neighbours[i]))
+                #toRemove.append(index)
+                neighbours[index] = False
+    neighbours = [elem for elem in neighbours if elem != False]#usuwanie elementów z false
+    #toRemove.clear()##usuwanie powtarzajacych sie elementow etap pierwszy usuwanie powtarzających się linii w liscie neighbours
+    for solution in range(0,len(neighbours)):
+        flag = 0
+        if neighbours[solution] != False:
+            for line in range(0,len(neighbours[solution])):
+                if flag == 1:
+                    break
+                for busa in range(0,len(neighbours[solution][line])):
+                    count = neighbours[solution][line].count(neighbours[solution][line][busa])
+                    if count>1:
+                        flag = 1
+>>>>>>> 31c6e68475f6cbc1646280c4938d64172d13c449
                         break
-                    for busa in range(0,len(neighbours[solution][line])):
-                        count = neighbours[solution][line].count(neighbours[solution][line][busa])
-                        if count>1:
-                            flag = 1
-                            break
-            if flag == 1:
-                neighbours[i] = False
-            neighbours = [elem for elem in neighbours if elem != False]#usuwanie elementów z false
-            #toRemove.clear()##etap 2 usuwanie linii w których przystanki powtarzają sie
-        """
-        return neighbours
+        if flag == 1:
+            neighbours[i] = False
+        neighbours = [elem for elem in neighbours if elem != False]#usuwanie elementów z false
+        #toRemove.clear()##etap 2 usuwanie linii w których przystanki powtarzają sie
+    """
+
 
     def checkNeighbour(self, x, y):
         minimum = 0
