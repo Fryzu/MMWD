@@ -30,14 +30,14 @@ class TaboAlgo:
         neighbours = self.solution.neighbourhood()
         best = self.findBest(neighbours)
         if(best == False):
-            #print("pusta lista tabu")
+            print("error")
             return False
-        self.solution.lines = copy.deepcopy(best)
+        self.solution.lines = copy.deepcopy(self.decode(best))
         self.actualCost = self.cost(self.solution.lines)
         if self.actualCost < self.bestLinesCost:
             self.bestLinesCost = self.actualCost
             self.bestLines = copy.deepcopy(self.solution.lines)
-        self.taboList.add(copy.deepcopy(self.solution.lines))
+        self.taboList.add(copy.deepcopy(best))
         self.taboList.update()
 
 
@@ -130,21 +130,38 @@ class TaboAlgo:
 
     def findBest(self,neighbours):
         if not neighbours:##is not empty
+            print("can't find neighbours\n")
             return False
         #neighbours = self.filtr(neighbours)
+        best = -inf
+        bestneighbour = False
         actualcost = self.cost(self.solution.lines)
-        best = actualcost -  self.cost(neighbours[0])
-        bestneighbour = neighbours[0]
-        for neighbour in neighbours:
-            if not self.taboList.check(neighbour):##is in tabu list ?
-                cost = actualcost - self.cost(neighbour)
-                if(cost>best):
+        #best = actualcost -  self.cost(neighbour)
+        #bestneighbour = neighbour
+        for example in neighbours:
+            neighbour = self.decode(example)
+            cost = actualcost - self.cost(neighbour)
+            if(cost > best):
+                if not self.taboList.check(example):
                     best = cost
-                    bestneighbour = neighbour
+                    bestneighbour = example
+                else:
+                    if actualcost - cost < self.bestLinesCost:#kryterium aspiracji
+                        best = cost
+                        bestneighbour = example
         return bestneighbour
 
-<<<<<<< HEAD
+    def decode(self,code):
+        #move- type line-busstop- previous busstop- new one
+        if(code["type"] == "move"):
+            result = copy.deepcopy(self.solution.lines)
+            result[code["line"]][code["busStop"]] = code["add"]
+        else:
+            result = False
+        return result
+#<<<<<<< HEAD
     def filtr(self,neighbours):
+        pass
     ##sprawdz czy jest polaczenie miedzy przystankami
         #toRemove = []
         """for i in range(0,len(neighbours)):
@@ -163,33 +180,7 @@ class TaboAlgo:
                     if flag == 1:
 =======
     ##def filtr(self,neighbours): #toRemove = []
-    """for i in range(0,len(neighbours)):
-        count = neighbours.count(neighbours[i])
-        if count>1:
-            for n in range(0,count-1):
-                index = neighbours.index((neighbours[i]))
-                #toRemove.append(index)
-                neighbours[index] = False
-    neighbours = [elem for elem in neighbours if elem != False]#usuwanie elementów z false
-    #toRemove.clear()##usuwanie powtarzajacych sie elementow etap pierwszy usuwanie powtarzających się linii w liscie neighbours
-    for solution in range(0,len(neighbours)):
-        flag = 0
-        if neighbours[solution] != False:
-            for line in range(0,len(neighbours[solution])):
-                if flag == 1:
-                    break
-                for busa in range(0,len(neighbours[solution][line])):
-                    count = neighbours[solution][line].count(neighbours[solution][line][busa])
-                    if count>1:
-                        flag = 1
->>>>>>> 31c6e68475f6cbc1646280c4938d64172d13c449
-                        break
-        if flag == 1:
-            neighbours[i] = False
-        neighbours = [elem for elem in neighbours if elem != False]#usuwanie elementów z false
-        #toRemove.clear()##etap 2 usuwanie linii w których przystanki powtarzają sie
-    """
-
+  
 
     def checkNeighbour(self, x, y):
         minimum = 0
@@ -224,6 +215,6 @@ class TaboAlgo:
         if globalmin == inf:##jesli nigdzie nie znaleziono polączenia czyli globalmin  = 0 to wyslij kare
             return settings.PENALTY
         else:
-            return globalmin
+            return globalmin"""
 
 
