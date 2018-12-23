@@ -140,7 +140,9 @@ class TaboAlgo:
         #bestneighbour = neighbour
         for example in neighbours:
             neighbour = self.decode(example)
-            cost = actualcost - self.cost(neighbour)
+            1
+            tmp = self.cost(neighbour)
+            cost = actualcost - tmp
             if(cost > best):
                 if not self.taboList.check(example):
                     best = cost
@@ -153,11 +155,13 @@ class TaboAlgo:
 
     def decode(self,code):
         #move- type line-busstop- previous busstop- new one
+        result = copy.deepcopy(self.solution.lines)
         if(code["type"] == "move"):
-            result = copy.deepcopy(self.solution.lines)
             result[code["line"]][code["busStop"]] = code["add"]
-        else:
-            result = False
+        if(code["type"] == "swap"):
+            tmp = result[code["line"]][code["busStopA"]]
+            result[code["line"]][code["busStopA"]] = result[code["line"]][code["busStopB"]]
+            result[code["line"]][code["busStopB"]] = tmp
         return result
 #<<<<<<< HEAD
     def filtr(self,neighbours):

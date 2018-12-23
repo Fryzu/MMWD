@@ -6,7 +6,7 @@ import settings
 import json
 
 #import pandas as pd
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 #import numpy as np
 
 import os #files and directories
@@ -44,9 +44,7 @@ class TestTaboAlgo15(unittest.TestCase):
             self.taboAlgo.iterate()
             costRun.append(self.taboAlgo.actualCost)
             print("Postęp: "+str(i*100/settings.ITERATION) +"%")
-       #plt.plot(range(100), costRun)
-       # plt.grid()
-        #plt.show()
+
         #=======
 #>>>>>>> 31c6e68475f6cbc1646280c4938d64172d13c449
         print("\nBefore iteration:")
@@ -57,6 +55,9 @@ class TestTaboAlgo15(unittest.TestCase):
         print(self.taboAlgo.bestLines)
         print(self.taboAlgo.city.printDistance())
         print(self.taboAlgo.city.printTraffic())
+        plt.plot(range(settings.ITERATION), costRun)
+        plt.grid()
+        plt.show()
 
 
 if __name__== "__main__":
