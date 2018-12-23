@@ -80,7 +80,7 @@ class Solution(ISolution):
     def neighbourhood(self):
         neigbourhood = []
         neigbourhood += self.changeOneBusStop()# change 1 busstop if it is possible
-        neigbourhood += self.swapBusStop()#swap 2 in one line 
+        neigbourhood += self.swapBusStop()#swap 2 in one line
 
         return neigbourhood
 

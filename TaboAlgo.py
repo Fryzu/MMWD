@@ -139,8 +139,7 @@ class TaboAlgo:
         #best = actualcost -  self.cost(neighbour)
         #bestneighbour = neighbour
         for example in neighbours:
-            neighbour = self.decode(example)
-            1
+            neighbour = self.decode(example)#decode from dictionary to line
             tmp = self.cost(neighbour)
             cost = actualcost - tmp
             if(cost > best):
