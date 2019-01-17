@@ -135,7 +135,7 @@ class TaboAlgo:
         #neighbours = self.filtr(neighbours)
         best = -inf
         bestneighbour = False
-        actualcost = self.cost(self.solution.lines)
+        actualcost = self.actualCost
         #best = actualcost -  self.cost(neighbour)
         #bestneighbour = neighbour
         for example in neighbours:

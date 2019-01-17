@@ -28,7 +28,7 @@ class TestTaboAlgo15(unittest.TestCase):
         with open(os.path.join(project_dir, "test_city_15.json"), 'r') as r_file:
             city.importFromJson(r_file)
         solution = Solution()
-        solution.updateLines([[3, 4, 0, 1, 2], [9, 0, 1, 2, 3], [8, 4, 0, 1, 2]])
+        solution.updateLines([[14, 13, 12, 10, 0], [12, 11, 8, 5, 3], [2, 4, 7, 9, 10]])
         self.taboAlgo = TaboAlgo(city, solution)
 
     def test_iterate(self):
