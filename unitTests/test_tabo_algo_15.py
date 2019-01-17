@@ -30,7 +30,6 @@ class TestTaboAlgo15(unittest.TestCase):
         self.taboAlgo = TaboAlgo(city, solution)
 
     def test_iterate(self):
-<<<<<<< HEAD
         bestLinesCost = self.taboAlgo.bestLinesCost
         bestLines = self.taboAlgo.bestLines
 
@@ -40,26 +39,15 @@ class TestTaboAlgo15(unittest.TestCase):
             self.taboAlgo.iterate()
             costRun.append(self.taboAlgo.actualCost)
             print(i, "%")
-        plt.plot(range(100), costRun)
-
-        plt.grid()
-        plt.show()
-=======
-        settings.ITERATION = 1000
-        bestLinesCost = self.taboAlgo.bestLinesCost
-        bestLines = self.taboAlgo.bestLines
-        n = 0
-        while n <settings.ITERATION:
-            n+=1
-            print("Postęp: " + str(n*100/settings.ITERATION)+"%")
-            self.taboAlgo.iterate()
->>>>>>> 31c6e68475f6cbc1646280c4938d64172d13c449
+        
         print("\nBefore iteration:")
         print("cost: ", bestLinesCost)
         print(bestLines)
         print("After iteration:")
         print("cost: ", self.taboAlgo.bestLinesCost)
         print(self.taboAlgo.bestLines)
-
+        plt.plot(range(100), costRun)
+        plt.grid()
+        plt.show()
 if __name__== "__main__":
     unittest.main()
