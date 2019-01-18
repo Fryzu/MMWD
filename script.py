@@ -2,46 +2,61 @@ import settings
 from Solution import Solution
 from City import City
 from TaboAlgo import TaboAlgo
-import time
-import os #files and directories
-datasets_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "unitTests")
+import os
 import matplotlib.pyplot as plt
+
+datasets_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "datasets")
 
 settings.MAP_SIZE = 15
 settings.LINE_LENGTH = 5
 settings.LINES_NUMBER = 3
-settings.ITERATION = 100
 settings.TABUTIME = 20
 
-print("Reading datasets... ", end='', flush=True)
+print("Tabu Search (TS) algorithm in a problem of public transport network creation")
+print("@Sylwester Dawida, @Bartłomiej Fryz")
+print("="*76)
 
-city = City()
-with open(os.path.join(datasets_dir, "test_city_15.json"), 'r') as r_file:
-    city.importFromJson(r_file)
-solution = Solution()
+# Initializing all the objects
 
-print("OK")
-print("Initializing algorythm... ", end='', flush=True)
-
+while True:
+    try:
+        print("{}".format(os.listdir(datasets_dir)))
+        dataset_name = input("Please enter dataset name from set above: ")
+        city = City()
+        with open(os.path.join(datasets_dir, dataset_name+".json"), 'r') as r_file:
+            city.importFromJson(r_file)
+        settings.MAP_SIZE = len(city._conncections)
+        solution = Solution()
+        print("ok")
+        break
+    except:    
+        print('No such file as {}\n'.format(dataset_name), end='', flush=True)
 taboAlgo = TaboAlgo(city, solution)
+print("="*76)
 
-print("OK")
-print("Algo run... ", flush=True)
-print("Start cost function value: ", "{:,}".format(taboAlgo.bestLinesCost))
+# Iteration loop
 
-print("|"," "*98, "|", flush=True)
 costRun = []
 costRun.append(taboAlgo.bestLinesCost)
-i = 0
-while i < settings.ITERATION:
-    i=i+1
-    taboAlgo.iterate()
-    costRun.append(taboAlgo.actualCost)
-    print("=", end='', flush=True)
 
-plt.plot(range(settings.ITERATION+1), costRun)
-plt.grid()
-plt.show()
-print("\nEnd cost function value: ", "{:,}".format(taboAlgo.bestLinesCost))
 
-print("OK")
+while True:
+    iterations_count = int(input("Insert iterarions count untill stop and summary: "))
+    i = 0
+    while i < iterations_count:
+        taboAlgo.iterate()
+        costRun.append(taboAlgo.actualCost)
+        print("*", end='', flush=True)
+        i=i+1
+    plt.plot(range(len(costRun)), costRun)
+    plt.grid()
+    plt.show()
+
+    print("")
+    print("Current solution: {}\ncost {}".format(taboAlgo.solution.lines, taboAlgo.actualCost))
+    print("Current best solution: {}\ncost {}".format(taboAlgo.bestLines, taboAlgo.bestLinesCost))
+
+    if input("Do you want to end process? Y/n ") == "Y":
+        break
+
+print("="*76)
