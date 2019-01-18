@@ -25,6 +25,8 @@ class TaboAlgo:
         self.bestLines = copy.deepcopy(self.solution.getLines())
         self.bestLinesCost = self.cost(self.solution.lines)
         self.actualCost = copy.deepcopy(self.bestLinesCost)
+        self.aspiration = 0
+        self.tabulen = 0
 
     def iterate(self):
         neighbours = self.solution.neighbourhood()
@@ -39,6 +41,7 @@ class TaboAlgo:
             self.bestLines = copy.deepcopy(self.solution.lines)
         self.taboList.add(copy.deepcopy(best))
         self.taboList.update()
+        self.tabulen = self.taboList.len()
 
 
         """for x in range(0, len(neighbours)):
@@ -138,6 +141,7 @@ class TaboAlgo:
         actualcost = self.actualCost
         #best = actualcost -  self.cost(neighbour)
         #bestneighbour = neighbour
+        self.aspiration = 0
         for example in neighbours:
             neighbour = self.decode(example)#decode from dictionary to line
             tmp = self.cost(neighbour)
@@ -150,6 +154,7 @@ class TaboAlgo:
                     if actualcost - cost < self.bestLinesCost:#kryterium aspiracji
                         best = cost
                         bestneighbour = example
+                        self.aspiration = self.aspiration+1
         return bestneighbour
 
     def decode(self,code):
@@ -220,4 +225,57 @@ class TaboAlgo:
         else:
             return globalmin"""
 
+    def alanisybus(self):
+        bufor = []
+        for example in self.solution.lines:
+            bufor += example
+        s = set(bufor)
+        bufor.clear()
+        for a in s:
+            bufor.append(a)
+        return len(bufor)/settings.MAP_SIZE
 
+    def analisypeople(self):
+        result = 0
+        all = 0
+        for i in range(0, settings.MAP_SIZE):
+            for j in range(0, settings.MAP_SIZE):
+                if i != j:
+                    result += self.analisypeople2(i,j,self.bestLines)*self.city.getTraffic(i, j)
+                    all+=self.city.getTraffic(i,j)
+        return result/all
+
+    def analisypeople2(self, x, y, lines):
+        minimum = 0
+        globalmin = inf
+        abd = 0
+        for line in self.bestLines: ##potem mozna robic do aktualniej liczby linii metoda do solution
+            for i in range(0, len(line)):##przechodznie po lini w poszukiwaniu przystanku x
+                if line[i] == x:## jesli znaleziono przystanek x
+                    for m in range(0, len(line)):##szukanie przystanku Y w linii
+                        if line[m] == y:
+                            minimum = 0
+                            if m > i:
+                                for n in range(i, m,1):
+                                    next = self.city.getDistance(line[n], line[n+1])
+                                    if next == inf:## zabezpieczenie przed inf czyli braku połączenia między przystankami
+                                        minimum = inf
+                                        break
+                                    minimum =1## to samo tylko dla przypadku y>x
+                            if m < i:
+                                for n in range(i, m,-1):
+                                    next = self.city.getDistance(line[n], line[n-1])
+                                    if next == inf:
+                                        minimum = inf
+                                        break
+                                    minimum =1## to samo tylko dla przy
+                            if globalmin > minimum:
+                                globalmin = minimum##globalnie najmniejsza trasa
+                        else:
+                            continue
+                else:
+                    continue
+        if minimum == inf:##jesli nigdzie nie znaleziono polączenia czyli globalmin  = 0 to wyslij kare
+            return 0
+        else:
+            return minimum

@@ -37,8 +37,9 @@ print("="*76)
 # Iteration loop
 
 costRun = []
+aspiration = []
+tabulen = []
 costRun.append(taboAlgo.bestLinesCost)
-
 
 while True:
     iterations_count = int(input("Insert iterarions count untill stop and summary: "))
@@ -46,6 +47,8 @@ while True:
     while i < iterations_count:
         taboAlgo.iterate()
         costRun.append(taboAlgo.actualCost)
+        aspiration.append(taboAlgo.actualCost)
+        tabulen.append(taboAlgo.actualCost)
         print("*", end='', flush=True)
         i=i+1
     plt.plot(range(len(costRun)), costRun)
