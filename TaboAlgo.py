@@ -141,7 +141,6 @@ class TaboAlgo:
         actualcost = self.actualCost
         #best = actualcost -  self.cost(neighbour)
         #bestneighbour = neighbour
-        self.aspiration = 0
         for example in neighbours:
             neighbour = self.decode(example)#decode from dictionary to line
             tmp = self.cost(neighbour)
@@ -241,7 +240,7 @@ class TaboAlgo:
         for i in range(0, settings.MAP_SIZE):
             for j in range(0, settings.MAP_SIZE):
                 if i != j:
-                    result += self.analisypeople2(i,j,self.bestLines)*self.city.getTraffic(i, j)
+                    result += self.analisypeople2(i,j,self.solution.lines)*self.city.getTraffic(i, j)
                     all+=self.city.getTraffic(i,j)
         return result/all
 
