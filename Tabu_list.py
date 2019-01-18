@@ -66,3 +66,6 @@ class TabuList:
             for i in self.list:
                 pass#print('\n'+str(i[0])+str(i[1])+'\n'+"TabuTIME: " + str(i[2]))
         return result
+
+    def len(self):
+        return len(self.list)
