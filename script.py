@@ -7,9 +7,9 @@ import matplotlib.pyplot as plt
 
 datasets_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "datasets")
 
-settings.MAP_SIZE = 15
-settings.LINE_LENGTH = 5
-settings.LINES_NUMBER = 10
+settings.MAP_SIZE = 5
+settings.LINE_LENGTH = 4
+settings.LINES_NUMBER = 1
 settings.TABUTIME = 20
 
 def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█'):
@@ -60,6 +60,7 @@ people.append(100*taboAlgo.analisypeople())
 while True:
     iterations_count = int(input("Insert iterarions count untill stop and summary: "))
     i = 0
+    print("before: {}\ncost {}".format(taboAlgo.solution.lines, taboAlgo.actualCost))
     while i < iterations_count:
         taboAlgo.iterate()
         costRun.append(taboAlgo.actualCost)
