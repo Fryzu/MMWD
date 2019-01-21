@@ -9,8 +9,8 @@ datasets_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dataset
 
 settings.MAP_SIZE = 5
 settings.LINE_LENGTH = 4
-settings.LINES_NUMBER = 1
-settings.TABUTIME = 20
+settings.LINES_NUMBER = 3
+settings.TABUTIME = 50
 
 def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█'):
     percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
@@ -83,8 +83,8 @@ while True:
     plt.show()
 
     f, axarr = plt.subplots(3, sharex=True)
-    axarr[0].plot(range(len(costRun)), costRun)
-    axarr[0].set_title('Cost function')
+    axarr[0].plot(range(len(taboAlgo.index)),taboAlgo.index)#tutaj test ten wykres
+    axarr[0].set_title('powtarzające się rozwiązania')
     axarr[1].plot(range(len(aspiration)), aspiration)
     axarr[1].set_title('Aspiration usage')
     axarr[2].plot(range(len(tabulen)), tabulen)
