@@ -8,9 +8,9 @@ import matplotlib.pyplot as plt
 datasets_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "datasets")
 
 settings.MAP_SIZE = 15
-settings.LINE_LENGTH = 5
-settings.LINES_NUMBER = 3
-settings.TABUTIME = 20
+settings.LINE_LENGTH = 4
+settings.LINES_NUMBER = 1
+settings.TABUTIME = 3
 
 def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█'):
     percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
