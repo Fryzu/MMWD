@@ -27,6 +27,10 @@ class TaboAlgo:
         self.actualCost = copy.deepcopy(self.bestLinesCost)
         self.aspiration = 0
         self.tabulen = 0
+        self.repeatingsolution = []
+        self.repeatingsolution.append(copy.deepcopy(self.solution.getLines()))
+        self.index = []
+        self.index.append(1)
 
     def iterate(self):
         neighbours = self.solution.neighbourhood()
@@ -42,7 +46,17 @@ class TaboAlgo:
         self.taboList.add(copy.deepcopy(best))
         self.taboList.update()
         self.tabulen = self.taboList.len()
+        self.find(self.solution.lines)
 
+    def find(self, lines):
+        flag = False
+        for i in range(0, len(self.index)):
+            if self.repeatingsolution[i] == lines:
+                self.index[i] = self.index[i]+1
+                flag = True
+        if flag == False:
+            self.index.append(1)
+            self.repeatingsolution.append(copy.deepcopy(lines))
 
         """for x in range(0, len(neighbours)):
             if not self.taboList.check(neighbours[x]):

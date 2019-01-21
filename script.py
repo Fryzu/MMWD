@@ -106,6 +106,12 @@ while True:
     plt.ylabel('Długość')
     plt.grid(True)
 
+    plt.subplot(3, 2, 6)
+    plt.plot(range(len(taboAlgo.index)), taboAlgo.index)
+    plt.title('Powtarzające się rozwiązania')
+    plt.xlabel('')
+    plt.ylabel('Długość')
+    plt.grid(True)
 
     plt.tight_layout()
     plt.show()
