@@ -60,6 +60,7 @@ people.append(100*taboAlgo.analisypeople())
 while True:
     iterations_count = int(input("Insert iterarions count untill stop and summary: "))
     i = 0
+    print("before: {}\ncost {}".format(taboAlgo.solution.lines, taboAlgo.actualCost))
     while i < iterations_count:
         taboAlgo.iterate()
         costRun.append(taboAlgo.actualCost)

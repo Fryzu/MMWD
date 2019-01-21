@@ -23,17 +23,19 @@ class TestTaboAlgo15(unittest.TestCase):
         settings.LINE_LENGTH = 5
         settings.LINES_NUMBER = 3
         settings.ITERATION = 100
+        settings.TABUTIME = 40
 
         city = City()
         with open(os.path.join(project_dir, "test_city_15.json"), 'r') as r_file:
             city.importFromJson(r_file)
         solution = Solution()
+        #solution.updateLines([[14, 12, 11, 10, 7], [2, 4, 9, 13, 14], [2, 3, 5, 8, 12]])
         self.taboAlgo = TaboAlgo(city, solution)
 
     def test_iterate(self):
         bestLinesCost = self.taboAlgo.bestLinesCost
         bestLines = self.taboAlgo.bestLines
-        settings.ITERATION = 100
+        settings.ITERATION = 1000
         costRun = []
         i = 0
         print('\n')

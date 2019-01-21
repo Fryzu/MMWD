@@ -25,17 +25,19 @@ class Solution(ISolution):
         else:
             self.lines = []
             #generate list of lines
-            for i in range(0, settings.LINES_NUMBER):
+            for m in range(0, settings.LINES_NUMBER):
 
                 #generate random line
+                gen = []
+                for i in range(0, settings.MAP_SIZE):
+                    gen.append(i)
+
                 line = []
 
-                startStop = randint(0, settings.MAP_SIZE-1)
-                line.append(startStop)
-
-                for i in range(1, settings.LINE_LENGTH):
-                    nextStop = (line[i-1] + 1)%settings.LINE_LENGTH
-                    line.append(nextStop)
+                for j in range(0, settings.LINE_LENGTH):
+                    nextStop = randint(0, len(gen)-1)
+                    line.append(gen[nextStop])
+                    gen.remove(gen[nextStop])
 
                 self.lines.append(line)
 
