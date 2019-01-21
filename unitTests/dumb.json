@@ -1,0 +1,113 @@
+[
+    [
+        {
+            "distance": Infinity,
+            "traffic": Infinity
+        },
+        {
+            "distance": 1,
+            "traffic": 100
+        },
+        {
+            "distance": 100,
+            "traffic": 1
+        },
+        {
+            "distance": 100,
+            "traffic": 1
+        },
+        {
+            "distance": 100,
+            "traffic": 1
+        }
+    ],
+    [
+        {
+            "distance": 1,
+            "traffic": 100
+        },
+        {
+            "distance": Infinity,
+            "traffic": Infinity
+        },
+        {
+            "distance": 100,
+            "traffic": 1
+        },
+        {
+            "distance": 100,
+            "traffic": 1
+        },
+        {
+            "distance": 1,
+            "traffic": 100
+        }
+    ],
+    [
+        {
+            "distance": 100,
+            "traffic": 1
+        },
+        {
+            "distance": 100,
+            "traffic": 1
+        },
+        {
+            "distance": Infinity,
+            "traffic": Infinity
+        },
+        {
+            "distance": 100,
+            "traffic": 1
+        },
+        {
+            "distance": 1,
+            "traffic": 100
+        }
+    ],
+    [
+        {
+            "distance": 100,
+            "traffic": 1
+        },
+        {
+            "distance": 100,
+            "traffic": 1
+        },
+        {
+            "distance": 100,
+            "traffic": 1
+        },
+        {
+            "distance": Infinity,
+            "traffic": Infinity
+        },
+        {
+            "distance": 100,
+            "traffic": 1
+        }
+    ],
+    [
+        {
+            "distance": 100,
+            "traffic": 1
+        },
+        {
+            "distance": 1,
+            "traffic": 100
+        },
+        {
+            "distance": 1,
+            "traffic": 100
+        },
+        {
+            "distance": 100,
+            "traffic": 1
+        },
+        {
+            "distance": Infinity,
+            "traffic": Infinity
+        }
+    ]
+]
+
