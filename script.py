@@ -8,9 +8,9 @@ import matplotlib.pyplot as plt
 datasets_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "datasets")
 
 settings.MAP_SIZE = 15
-settings.LINE_LENGTH = 4
-settings.LINES_NUMBER = 1
-settings.TABUTIME = 3
+settings.LINE_LENGTH = 5
+settings.LINES_NUMBER = 10
+settings.TABUTIME = 20
 
 def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█'):
     percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
@@ -29,17 +29,33 @@ print("="*76)
 
 while True:
     try:
-        print("{}".format(os.listdir(datasets_dir)))
+        print("{} or random".format(os.listdir(datasets_dir)))
         dataset_name = input("Please enter dataset name from set above: ")
-        city = City()
-        with open(os.path.join(datasets_dir, dataset_name+".json"), 'r') as r_file:
-            city.importFromJson(r_file)
-        settings.MAP_SIZE = len(city._conncections)
-        solution = Solution()
+        if dataset_name == "random":
+            dataset_size = input("Please enter city size: ")
+            settings.MAP_SIZE = int(dataset_size)
+            city = City()
+            print(dataset_size)
+        else:
+            city = City()
+            with open(os.path.join(datasets_dir, dataset_name+".json"), 'r') as r_file:
+                city.importFromJson(r_file)
+            settings.MAP_SIZE = len(city._conncections)
         print("ok")
         break
     except:    
         print('No such file as {}\n'.format(dataset_name), end='', flush=True)
+
+print("="*76)
+tmp = input("Please enter number of lines: ")
+settings.LINES_NUMBER = int(tmp)
+tmp = input("Please enter length of lines: ")
+settings.LINE_LENGTH= int(tmp)
+tmp = input("Please enter tabo time: ")
+settings.TABUTIME= int(tmp)
+solution = Solution()
+print("ok")
+
 taboAlgo = TaboAlgo(city, solution)
 print("="*76)
 
@@ -86,7 +102,7 @@ while True:
     plt.grid(True)
 
     plt.subplot(3, 2, 3)
-    plt.plot(range(len(stops)), stops)
+    plt.plot(range(len(people)), people)
     plt.title('Procentowa obsługa ludzi')
     plt.xlabel('Iteracja i')
     plt.ylabel('Ilość osób [%]')
@@ -109,36 +125,12 @@ while True:
     plt.subplot(3, 2, 6)
     plt.plot(range(len(taboAlgo.index)), taboAlgo.index)
     plt.title('Powtarzające się rozwiązania')
-    plt.xlabel('')
+    plt.xlabel('Iteracja i')
     plt.ylabel('Długość')
     plt.grid(True)
 
     plt.tight_layout()
     plt.show()
-
-    """ f, axarr = plt.subplots(3, sharex=True)
-    axarr[0].plot(range(len(costRun)), costRun)
-    axarr[0].set_title('Funkcja celu')
-    plt.grid()
-    axarr[1].plot(range(len(stops)), stops)
-    plt.grid()
-    axarr[1].set_title('Procentowa obsługa przystanków')
-    axarr[2].plot(range(len(people)), people)
-    axarr[2].set_title('Procentowa obsługa ludzi')
-
-    
-    plt.show()
-
-    f, axarr = plt.subplots(3, sharex=True)
-    axarr[0].plot(range(len(costRun)), costRun)
-    axarr[0].set_title('Funkcja celu')
-    axarr[1].plot(range(len(aspiration)), aspiration)
-    axarr[1].set_title('Ilość wywołań kryterium aspiracji')
-    axarr[2].plot(range(len(tabulen)), tabulen)
-    axarr[2].set_title('Długość tablicy tabu')
-
-    plt.grid()
-    plt.show() """
 
     print("")
     print("Current solution: {}\ncost {}".format(taboAlgo.solution.lines, taboAlgo.actualCost))
