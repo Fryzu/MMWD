@@ -9,7 +9,7 @@ datasets_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dataset
 
 settings.MAP_SIZE = 15
 settings.LINE_LENGTH = 5
-settings.LINES_NUMBER = 10
+settings.LINES_NUMBER = 3
 settings.TABUTIME = 20
 
 def printProgressBar (iteration, total, prefix = '', suffix = '', decimals = 1, length = 100, fill = '█'):
@@ -70,27 +70,68 @@ while True:
         printProgressBar(i+1, iterations_count, prefix = 'Progress:', suffix = 'Complete', length = 50)
         i=i+1
 
-    f, axarr = plt.subplots(3, sharex=True)
+    plt.subplot(3, 2, 1)
+    plt.plot(range(len(costRun)), costRun)
+    plt.xlabel('Iteracja i')
+    plt.ylabel('V(i)')
+    plt.title('Funkcja celu')
+    plt.grid(True)
+
+    plt.subplot(3, 2, 2)
+    plt.plot(range(len(stops)), stops)
+    plt.title('Procentowa obsługa przystanków')
+    plt.xlabel('Iteracja i')
+    plt.ylabel('Ilość przystanków [%]')
+    plt.grid(True)
+
+    plt.subplot(3, 2, 3)
+    plt.plot(range(len(stops)), stops)
+    plt.title('Procentowa obsługa ludzi')
+    plt.xlabel('Iteracja i')
+    plt.ylabel('Ilość osób [%]')
+    plt.grid(True)
+
+    plt.subplot(3, 2, 4)
+    plt.plot(range(len(aspiration)), aspiration)
+    plt.title('Ilość wywołań kryterium aspiracji')
+    plt.xlabel('Iteracja i')
+    plt.ylabel('Wywołania')
+    plt.grid(True)
+
+    plt.subplot(3, 2, 5)
+    plt.plot(range(len(tabulen)), tabulen)
+    plt.title('Długość tablicy tabu')
+    plt.xlabel('Iteracja i')
+    plt.ylabel('Długość')
+    plt.grid(True)
+
+
+    plt.tight_layout()
+    plt.show()
+
+    """ f, axarr = plt.subplots(3, sharex=True)
     axarr[0].plot(range(len(costRun)), costRun)
-    axarr[0].set_title('Cost function')
+    axarr[0].set_title('Funkcja celu')
+    plt.grid()
     axarr[1].plot(range(len(stops)), stops)
-    axarr[1].set_title('Stops usage')
-    axarr[2].plot(range(len(people)), people)
-    axarr[2].set_title('People length')
-
     plt.grid()
+    axarr[1].set_title('Procentowa obsługa przystanków')
+    axarr[2].plot(range(len(people)), people)
+    axarr[2].set_title('Procentowa obsługa ludzi')
+
+    
     plt.show()
 
     f, axarr = plt.subplots(3, sharex=True)
     axarr[0].plot(range(len(costRun)), costRun)
-    axarr[0].set_title('Cost function')
+    axarr[0].set_title('Funkcja celu')
     axarr[1].plot(range(len(aspiration)), aspiration)
-    axarr[1].set_title('Aspiration usage')
+    axarr[1].set_title('Ilość wywołań kryterium aspiracji')
     axarr[2].plot(range(len(tabulen)), tabulen)
-    axarr[2].set_title('Tabo length')
+    axarr[2].set_title('Długość tablicy tabu')
 
     plt.grid()
-    plt.show()
+    plt.show() """
 
     print("")
     print("Current solution: {}\ncost {}".format(taboAlgo.solution.lines, taboAlgo.actualCost))
